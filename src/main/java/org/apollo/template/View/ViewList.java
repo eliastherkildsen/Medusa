@@ -14,24 +14,9 @@ public enum ViewList {
     MAIN("MainView.fxml", MainController.getInstance()),
 
     /**
-     * Game view.
-     */
-    GAME("GameView.fxml", GameController.getInstance()),
-
-    /**
-     * Settings view.
-     */
-    SETTINGS("SettingsView.fxml", SettingsController.getInstance()),
-
-    /**
-     * Home view.
-     */
-    HOME("HomeView.fxml", HomeController.getInstance()),
-
-    /**
      * Menu view.
      */
-    MENU("MenuView.fxml", MenuController.getInstance());
+    MENU("MenuView.fxml", new MenuController());
 
     private final String FXML_FILE_NAME; // FXML file name of the view
     private final Object CONTROLLER; // Controller associated with the view

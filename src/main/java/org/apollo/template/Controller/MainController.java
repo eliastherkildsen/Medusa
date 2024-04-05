@@ -29,8 +29,7 @@ public class MainController implements Initializable, Alertable<VBox> {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        changeView(ViewList.HOME, BorderPaneRegion.CENTER);
-        changeView(ViewList.MENU, BorderPaneRegion.LEFT);
+        changeView(ViewList.MENU, BorderPaneRegion.CENTER);
     }
 
     /**

@@ -10,8 +10,8 @@ import org.apollo.template.View.ViewList;
 
 public class App extends Application {
 
-    public static int screenWidth = 1200;
-    public static int screenHeight = 800;
+    public static int screenWidth = 600;
+    public static int screenHeight = 400;
     private String screenTitle = "Apollo - JavaFx Template";
     private Image icon = new Image("file:src/main/resources/org/apollo/template/images/TempLogoBG_shadow.png");
     public static Stage stageRoot;
@@ -25,6 +25,7 @@ public class App extends Application {
         Scene root = new Scene((Parent) ViewLoader.loadView(ViewList.MAIN), screenWidth, screenHeight); // loading main view.
 
         // setting stage props.
+        stage.setResizable(false);
         stage.setTitle(screenTitle);
         stage.setScene(root);
         stage.getIcons().add(icon);
