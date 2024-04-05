@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" >
+<StackPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="404.0" fitWidth="615.0" pickOnBounds="true">
          <image>
@@ -22,7 +22,7 @@
             </Text>
             <Button mnemonicParsing="false" onAction="#onNewGame" text="NEW GAME" textAlignment="CENTER" />
             <Button layoutX="271.0" layoutY="26.0" mnemonicParsing="false" text="SCORBOARD" />
-            <Button layoutX="276.0" layoutY="164.0" mnemonicParsing="false" text="SETTINGS" />
+            <Button layoutX="276.0" layoutY="164.0" mnemonicParsing="false" onAction="#onSettings" text="SETTINGS" />
          </children>
          <padding>
             <Insets top="30.0" />
