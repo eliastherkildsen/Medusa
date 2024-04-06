@@ -32,16 +32,27 @@ public class GameController {
     @FXML
     public void handleKeyPress(KeyEvent keyEvent){
 
-        if (keyEvent.getCode() == KeyCode.UP){snake.setDirectionable(new UpDirection());
-            System.out.println("UP");}
-        if (keyEvent.getCode() == KeyCode.DOWN){snake.setDirectionable(new DownDirection());
-            System.out.println("DOWN");}
-        if (keyEvent.getCode() == KeyCode.LEFT){snake.setDirectionable(new LeftDirection());
-            System.out.println("LEFT");}
-        if (keyEvent.getCode() == KeyCode.RIGHT){snake.setDirectionable(new RightDirection());
-            System.out.println("RIGHT");}
+        if (keyEvent.getCode() == KeyCode.UP) {
+            snake.setDirectionable(new UpDirection());
+            //???.change(new UpDirection());
+            //System.out.println("UP");}
+        }
+        if (keyEvent.getCode() == KeyCode.DOWN) {
+            snake.setDirectionable(new DownDirection());
+            //???.change(new DownDirection());
+            //System.out.println("DOWN");}
+        }
+        if (keyEvent.getCode() == KeyCode.LEFT) {
+            snake.setDirectionable(new LeftDirection());
+            //???.change(new LeftDirection());
+            //System.out.println("LEFT");}
+        }
+        if (keyEvent.getCode() == KeyCode.RIGHT) {
+            snake.setDirectionable(new RightDirection());
+            //???.change(new RightDirection());
+            //System.out.println("RIGHT");}
+        }
     }
-
 
 
     public void onMainMenu(){
