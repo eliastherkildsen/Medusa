@@ -38,6 +38,16 @@ public class Head {
         canvas = object;
         gc = object.getGraphicsContext2D();
     }
+
+    /**
+     * Might removed this constructor, replace with one that accepts X and Y in relation to the logic.
+     * That would also allow you to create the object and spawn it in the world instantly.
+     * Colouring could or should be done by calling the setters anyway, and not on creation. (I think?)
+     * @param object
+     * @param colorHead
+     * @param colorEyes
+     * @param colorNose
+     */
     Head (Canvas object, Color colorHead, Color colorEyes, Color colorNose){
         canvas = object;
         gc = object.getGraphicsContext2D();
