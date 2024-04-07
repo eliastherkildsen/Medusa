@@ -4,23 +4,34 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-/**
- * TODO: NEEDS TO ACCOUNT FOR X and Y correction per comments on final variables RIGHT, DOWN, LEFT, RIGHT.
- */
 public class Head {
-    private final int RIGHT = 0;
-    private final int DOWN = 90; // x+23
-    private final int LEFT = 180; // x+20,y+23
-    private final int UP = 270; // y+23;
+    /*
+    My arrays account for rotation and correction for x, y
+    Index: 0 = Rotation, 1 = X, 2 = Y
+    */
+    private final int[] RIGHT = {
+            0, 0, 0
+    };
+    private final int[] DOWN = {
+            90, 23, 0
+    };
+    private final int[] LEFT = {
+            180, 20, 23
+    }; // x+20,y+23
+    private final int[] UP = {
+            270, 0, 23
+    }; // y+23;
     private Color headColor = SnakeDefaultColors.BODYCOLOR;
     private Color eyesColor = SnakeDefaultColors.EYESCOLOR;
     private Color noseColor = SnakeDefaultColors.NOSECOLOR;
-    private Canvas canvas;
-    private GraphicsContext gc;
+    private final Canvas canvas;
+    private final GraphicsContext gc;
 
     /**
-     * The Headclass is responsible for drawing and maintaining the head of the snake.
+     * The Head class is responsible for drawing and maintaining the head of the snake.
+     * It assumes that we are working on a 20x20 pixel grid.
      * TODO Currently relies on Canvas, might be better with GraphicsContext? Refactor when map is done.
+     * TODO Store information about logic position of the snakes head, not implemented yet as its an easy implementation and requires logic to be written first.
      * @param object Canvas
      */
     Head (Canvas object){
@@ -51,20 +62,20 @@ public class Head {
 
         gc.save(); //We need to save the current state of the graphics content
         gc.translate(x,y); //Translate to the center of our rotation
-        gc.rotate(directionValueRotation(direction)); // Rotate the convas..
+        gc.rotate(directionValueRotation(direction)[0]); // Rotate the convas..
         gc.translate(-x,-y); // Move back to where we want it to be.
 
-        drawHead(x,y); //Draw fucking head.
+        drawHead((x+directionValueRotation(direction)[1]),(y+directionValueRotation(direction)[2])); //Draw fucking head.
 
         gc.restore(); //Restore to our saved state. - Madness
     }
-    private int directionValueRotation (String direction){
+    private int[] directionValueRotation (String direction){
         return switch (direction) {
             case "UP" -> UP;
             case "DOWN" -> DOWN;
             case "LEFT" -> LEFT;
             case "RIGHT" -> RIGHT;
-            default -> 0;
+            default -> new int[]{0,0,0}; //We should never end here?
         };
     }
 
