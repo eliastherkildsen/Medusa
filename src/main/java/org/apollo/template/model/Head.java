@@ -16,7 +16,7 @@ public class Head {
     private Color eyesColor = SnakeDefaultColors.EYESCOLOR;
     private Color noseColor = SnakeDefaultColors.NOSECOLOR;
     private Canvas canvas;
-    private final GraphicsContext gc = canvas.getGraphicsContext2D();
+    private GraphicsContext gc;
 
     /**
      * The Headclass is responsible for drawing and maintaining the head of the snake.
@@ -25,9 +25,11 @@ public class Head {
      */
     Head (Canvas object){
         canvas = object;
+        gc = object.getGraphicsContext2D();
     }
     Head (Canvas object, Color colorHead, Color colorEyes, Color colorNose){
         canvas = object;
+        gc = object.getGraphicsContext2D();
 
         setHeadColor(colorHead);
         setEyesColor(colorEyes);
