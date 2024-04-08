@@ -7,20 +7,14 @@ import org.apollo.template.DirectionState.StillDirection;
 
 public class Snake implements Character {
 
-    private Directionable directionable = null;
-    private KeyCode keyCodePressed = null;
-    private String currentDirection = null;
+    private Directionable directionable;
+
+
 
 
 
     public Snake() {
         this.setDirectionable(new StillDirection());
-    }
-
-
-
-    public Directionable getDirectionable() {
-        return directionable;
     }
 
     public void setDirectionable(Directionable directionable) {
@@ -30,7 +24,7 @@ public class Snake implements Character {
 
 
 
-    public void moveSnake(){
+    public void moveSnake(KeyCode keyCodePressed){
         directionable.change(this, keyCodePressed);
     }
 

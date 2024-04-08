@@ -1,6 +1,5 @@
 package org.apollo.template.Controller;
 
-import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,10 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import org.apollo.template.DirectionState.*;
 import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
@@ -37,6 +34,7 @@ public class GameController implements Initializable {
     @FXML
     private Button btnResume, btnMainMenu, btnExit;
 
+    private boolean escSwitchStage = false;
 
 
     Snake snake = new Snake();
@@ -49,41 +47,8 @@ public class GameController implements Initializable {
         visibility();
         gameStackPane.setFocusTraversable(true);
 
-
-
-        gameStackPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode().equals(KeyCode.UP)){
-                    System.out.println("UP");
-                    snake.moveSnake();
-                }
-                if (keyEvent.getCode().equals(KeyCode.DOWN)){
-                    System.out.println("DOWN");
-                }
-                if (keyEvent.getCode().equals(KeyCode.LEFT)){
-                    System.out.println("LEFT");
-                }
-                if (keyEvent.getCode().equals(KeyCode.RIGHT)){
-                    System.out.println("RIGHT");
-                }
-
-
-                if (keyEvent.getCode().equals(KeyCode.ESCAPE)){
-                    vBoxPausedGame.setVisible(true);
-                    keyEvent.consume();
-                }
-            }
-        });
-
-
-
-
-
-
-
+        loadListener();
     }
-
 
 
 
@@ -95,54 +60,60 @@ public class GameController implements Initializable {
      *
      * @param keyEvent a KeyEvent object containing information about the key press event that triggered the action
      */
+    private void loadListener() {
+        gameStackPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+
+                if (keyEvent.getCode().equals(KeyCode.ESCAPE)){
+
+                    if (!escSwitchStage) {
+                        System.out.println("YEAH!");
+                        vBoxPausedGame.setVisible(true);
+                    }
+
+                    if (escSwitchStage){
+                        System.out.println("NEARHH!");
+
+                        vBoxPausedGame.setVisible(false);
+                    }
+
+                    toggleEscState();
+
+                }
 
 
+                if (keyEvent.getCode().equals(KeyCode.UP)){
+                    System.out.println("UP");
+                    snake.moveSnake(keyEvent.getCode());
+                }
+                if (keyEvent.getCode().equals(KeyCode.DOWN)){
+                    System.out.println("DOWN");
+                    snake.moveSnake(keyEvent.getCode());
+                }
+                if (keyEvent.getCode().equals(KeyCode.LEFT)){
+                    System.out.println("LEFT");
+                    snake.moveSnake(keyEvent.getCode());
+                }
+                if (keyEvent.getCode().equals(KeyCode.RIGHT)){
+                    System.out.println("RIGHT");
+                    snake.moveSnake(keyEvent.getCode());
+                }
+            }
+        });
+    }
 
-    @FXML
-    public void handleKeyPress(KeyEvent keyEvent){
-
-
+    private void toggleEscState() {
+        escSwitchStage = !escSwitchStage;
     }
 
 
-   /*
-    @FXML
-    public void handleKeyPress(KeyEvent keyEvent){
-
-        if (keyEvent.getCode() == KeyCode.UP) {
-            System.out.println("before: UP" + snake.getDirectionable());
-            snake.moveSnake();
-            System.out.println("after: UP" + snake.getDirectionable());
-        }
-        else if (keyEvent.getCode() == KeyCode.DOWN) {
-            snake.setDirectionable(new DownDirection());
-            //???.change(new DownDirection());
-            //System.out.println("DOWN");}
-        }
-        else if (keyEvent.getCode() == KeyCode.LEFT) {
-            snake.setDirectionable(new LeftDirection());
-            //???.change(new LeftDirection());
-            //System.out.println("LEFT");}
-        }
-        else if (keyEvent.getCode() == KeyCode.RIGHT) {
-            snake.setDirectionable(new RightDirection());
-
-            //???.change(new RightDirection());
-            //System.out.println("RIGHT");}
-        }
 
 
-        if (keyEvent.getCode() == KeyCode.ESCAPE) {
-            System.out.println("hallo");
-            snakeCanvas.setVisible(false);
-            eatableCanvas.setVisible(false);
 
-            vBoxPausedGame.setVisible(true);
-        }
 
-    }
 
-    */
+
 
 
 
@@ -158,8 +129,18 @@ public class GameController implements Initializable {
     }
 
 
+    public void onResume(){
+        vBoxPausedGame.setVisible(false);
+        toggleEscState();
+
+    }
+
     public void onMainMenu(){
         MainController.getInstance().changeView(ViewList.MENU, BorderPaneRegion.CENTER);
+    }
+
+    public void onExit(){
+        System.exit(0);
     }
 
 
