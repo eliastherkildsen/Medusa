@@ -74,15 +74,19 @@ public class GameController implements Initializable {
 
                 // handles key press escape - paused game
                 if (keyEvent.getCode().equals(KeyCode.ESCAPE)){
+
+                    DebugMessage.info("GameController - LoadListener","Escape key pressed");
+
                     if (!escSwitchStage) {
                         vBoxPausedGame.setVisible(true);
+                        DebugMessage.info("GameController - LoadListener", "Game paused");
                     }
 
                     if (escSwitchStage){
                         vBoxPausedGame.setVisible(false);
+                        DebugMessage.info("GameController - LoadListener", "Game resumed");
                     }
 
-                    DebugMessage.info("GameController - LoadListener","Escape key pressed");
                     toggleEscState();
                 }
 
