@@ -17,9 +17,6 @@ public class DownDirection implements Directionable{
             snake.setDirectionable(new RightDirection());
             DebugMessage.info(this, "Right direction");
         }
-
-        System.out.println("NOTHING!");
-
     }
 
 }
