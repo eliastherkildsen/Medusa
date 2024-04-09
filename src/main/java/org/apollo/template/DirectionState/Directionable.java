@@ -5,9 +5,11 @@ import org.apollo.template.model.Direction;
 import org.apollo.template.model.Snake;
 
 public interface Directionable {
-
-    void change(Snake snake, KeyCode keyCode);
-
-
-
+    void change(KeyCode keyCode);
+    KeyCode getStateAsKey ();
+    void getYVelocity ();
+    void getXVelocity ();
+    void getRotation ();
+    void getDirection();
+    String getStateAsString();
 }

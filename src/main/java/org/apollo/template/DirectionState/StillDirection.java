@@ -5,32 +5,63 @@ import org.apollo.template.Service.Debugger.DebugMessage;
 import org.apollo.template.model.Snake;
 
 public class StillDirection implements Directionable{
+    private Character character;
+    private KeyCode keyCode;
 
+    public StillDirection (Character character){
+        this.character = character;
+    }
     /**
      * Method for changing the snake's direction based on the pressed key code - either up, down, left or right direction.
-     *
-     * @param snake The snake object whose direction will be changed.
      * @param keyCode The key code representing the direction change.
      */
     @Override
-    public void change(Snake snake, KeyCode keyCode) {
+    public void change(KeyCode keyCode) {
         if (keyCode.equals(KeyCode.UP)){
-            snake.setDirectional(new UpDirection());
+            character.setDirectional(new UpDirection());
             DebugMessage.info(this, "Up direction");
         }
         if (keyCode.equals(KeyCode.DOWN)){
-            snake.setDirectional(new DownDirection());
+            character.setDirectional(new DownDirection());
             DebugMessage.info(this, "Down direction");
         }
         if (keyCode.equals(KeyCode.LEFT)){
-            snake.setDirectional(new LeftDirection());
+            character.setDirectional(new LeftDirection());
             DebugMessage.info(this, "Left direction");
         }
         if (keyCode.equals(KeyCode.RIGHT)){
-            snake.setDirectional(new RightDirection());
+            character.setDirectional(new RightDirection());
             DebugMessage.info(this, "Right direction");
         }
     }
 
+    @Override
+    public KeyCode getStateAsKey() {
+        return null;
+    }
 
+    @Override
+    public void getYVelocity() {
+
+    }
+
+    @Override
+    public void getXVelocity() {
+
+    }
+
+    @Override
+    public void getRotation() {
+
+    }
+
+    @Override
+    public void getDirection() {
+
+    }
+
+    @Override
+    public String getStateAsString() {
+        return null;
+    }
 }

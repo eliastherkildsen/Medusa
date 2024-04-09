@@ -26,7 +26,6 @@ public class LeftDirection implements Directionable{
             snake.setDirectional(new DownDirection());
             DebugMessage.info(this, "Down direction");
             snake.setYVelocity(snake.getMovementSpeed());
-
         }
     }
 
