@@ -23,7 +23,7 @@ public class SnakeBody extends Group implements Snake {
 
     public void drawBody(){
         body = new Circle();
-        body.setRadius(size * 1);
+        body.setRadius(size * 10);
         body.setFill(Color.GREEN);
     }
     @Override

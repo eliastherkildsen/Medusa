@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -37,13 +36,13 @@ public class GameController implements Initializable {
     @FXML
     private Pane snakeCanvas;
     @FXML
-    private Label scoreLabel, pausedGameLabel;
+    private Label scoreLabel, pausedGameLabel, xPos, yPos;
     @FXML
     private VBox vBoxPausedGame;
     @FXML
     private Button btnResume, btnMainMenu, btnExit;
 
-    private boolean escSwitchStage = false;
+    private boolean pausedState = false;
 
     private Snake snake = new Snake();
     private Timeline gameLoop;
@@ -86,7 +85,30 @@ public class GameController implements Initializable {
     }
 
     private void updateGame() {
-        snake.updateSnakePosition();
+
+        // checks if the game is paused
+        if (pausedState) return;
+        updateDebugLab();
+
+        // checks if the snake is on screen
+        if (isOnScreen()) {
+            snake.updateSnakePosition();
+        }
+    }
+
+    private boolean isOnScreen(){
+
+        if (snake.getXPos() <= 0 || snake.getXPos() >= snakeCanvas.getWidth()) return false;
+        if (snake.getYPos() <= 0 || snake.getYPos() >= snakeCanvas.getWidth()) return false;
+
+        return true;
+    }
+
+    private void updateDebugLab() {
+        xPos.setText(String.valueOf(snake.getXPos()));
+        yPos.setText(String.valueOf(snake.getYPos()));
+
+
     }
 
     /**
@@ -98,46 +120,45 @@ public class GameController implements Initializable {
      * If the ESC key is pressed, the game is paused if it is currently running, or resumed if it is already paused.
      */
     private void loadListener() {
-        gameStackPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
+        gameStackPane.setOnKeyPressed(keyEvent -> {
 
-                // handles key press escape - paused game
-                if (keyEvent.getCode().equals(KeyCode.ESCAPE)){
+            System.out.println(keyEvent.getCode());
 
-                    DebugMessage.info("GameController - LoadListener","Escape key pressed");
+            // handles key press escape - paused game
+            if (keyEvent.getCode().equals(KeyCode.ESCAPE) || keyEvent.getCode().equals(KeyCode.SPACE)){
 
-                    if (!escSwitchStage) {
-                        vBoxPausedGame.setVisible(true);
-                        DebugMessage.info("GameController - LoadListener", "Game paused");
-                    }
+                DebugMessage.info("GameController - LoadListener","Escape key pressed");
 
-                    if (escSwitchStage){
-                        vBoxPausedGame.setVisible(false);
-                        DebugMessage.info("GameController - LoadListener", "Game resumed");
-                    }
-
-                    toggleEscState();
-
+                if (!pausedState) {
+                    vBoxPausedGame.setVisible(true);
+                    DebugMessage.info("GameController - LoadListener", "Game paused");
                 }
 
-                // handles key press directions - up, down, left, right
-                if (keyEvent.getCode().equals(KeyCode.UP)){
-                    DebugMessage.info("GameController - LoadListener","Up key pressed");
-                    snake.moveSnake(keyEvent.getCode());
+                if (pausedState){
+                    vBoxPausedGame.setVisible(false);
+                    DebugMessage.info("GameController - LoadListener", "Game resumed");
                 }
-                if (keyEvent.getCode().equals(KeyCode.DOWN)){
-                    DebugMessage.info("GameController - LoadListener","Down key pressed");
-                    snake.moveSnake(keyEvent.getCode());
-                }
-                if (keyEvent.getCode().equals(KeyCode.LEFT)){
-                    DebugMessage.info("GameController - LoadListener","Left key pressed");
-                    snake.moveSnake(keyEvent.getCode());
-                }
-                if (keyEvent.getCode().equals(KeyCode.RIGHT)){
-                    DebugMessage.info("GameController - LoadListener","Right key pressed");
-                    snake.moveSnake(keyEvent.getCode());
-                }
+
+                toggleEscState();
+
+            }
+
+            // handles key press directions - up, down, left, right
+            if (keyEvent.getCode().equals(KeyCode.UP)){
+                DebugMessage.info("GameController - LoadListener","Up key pressed");
+                snake.moveSnake(keyEvent.getCode());
+            }
+            if (keyEvent.getCode().equals(KeyCode.DOWN)){
+                DebugMessage.info("GameController - LoadListener","Down key pressed");
+                snake.moveSnake(keyEvent.getCode());
+            }
+            if (keyEvent.getCode().equals(KeyCode.LEFT)){
+                DebugMessage.info("GameController - LoadListener","Left key pressed");
+                snake.moveSnake(keyEvent.getCode());
+            }
+            if (keyEvent.getCode().equals(KeyCode.RIGHT)){
+                DebugMessage.info("GameController - LoadListener","Right key pressed");
+                snake.moveSnake(keyEvent.getCode());
             }
         });
     }
@@ -147,7 +168,7 @@ public class GameController implements Initializable {
      * Method for toggling the escape state.
      */
     private void toggleEscState() {
-        escSwitchStage = !escSwitchStage;
+        pausedState = !pausedState;
     }
 
 
