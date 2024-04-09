@@ -19,7 +19,9 @@ public enum ViewList {
     MENU("MenuView.fxml", new MenuController()),
     GAME("GameView.fxml", new GameController()),
 
-    SETTINGS("SettingsView.fxml", new SettingsController());
+    SETTINGS("SettingsView.fxml", new SettingsController()),
+
+    REGISTRATION("RegistrationView.fxml", new RegistrationController());
 
     private final String FXML_FILE_NAME; // FXML file name of the view
     private final Object CONTROLLER; // Controller associated with the view
