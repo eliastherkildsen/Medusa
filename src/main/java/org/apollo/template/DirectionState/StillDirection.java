@@ -2,66 +2,46 @@ package org.apollo.template.DirectionState;
 
 import javafx.scene.input.KeyCode;
 import org.apollo.template.Service.Debugger.DebugMessage;
+import org.apollo.template.model.Character;
+import org.apollo.template.model.Direction;
 import org.apollo.template.model.Snake;
 
 public class StillDirection implements Directionable{
     private Character character;
-    private KeyCode keyCode;
 
     public StillDirection (Character character){
         this.character = character;
+        changeSpeedDirection();
+    }
+    private void changeSpeedDirection(){
+        character.setXVelocity(0);
+        character.setYVelocity(0);
     }
     /**
      * Method for changing the snake's direction based on the pressed key code - either up, down, left or right direction.
-     * @param keyCode The key code representing the direction change.
+     * @param direction The enum representing the direction change.
      */
     @Override
-    public void change(KeyCode keyCode) {
-        if (keyCode.equals(KeyCode.UP)){
+    public void change(Direction direction) {
+        if (direction.equals(Direction.UP)){
             character.setDirectional(new UpDirection());
             DebugMessage.info(this, "Up direction");
         }
-        if (keyCode.equals(KeyCode.DOWN)){
+        if (direction.equals(Direction.DOWN)){
             character.setDirectional(new DownDirection());
             DebugMessage.info(this, "Down direction");
         }
-        if (keyCode.equals(KeyCode.LEFT)){
+        if (direction.equals(Direction.LEFT)){
             character.setDirectional(new LeftDirection());
             DebugMessage.info(this, "Left direction");
         }
-        if (keyCode.equals(KeyCode.RIGHT)){
+        if (direction.equals(Direction.RIGHT)){
             character.setDirectional(new RightDirection());
             DebugMessage.info(this, "Right direction");
         }
     }
-
-    @Override
-    public KeyCode getStateAsKey() {
-        return null;
-    }
-
-    @Override
-    public void getYVelocity() {
-
-    }
-
-    @Override
-    public void getXVelocity() {
-
-    }
-
-    @Override
-    public void getRotation() {
-
-    }
-
-    @Override
-    public void getDirection() {
-
-    }
-
     @Override
     public String getStateAsString() {
-        return null;
+        return "Still";
     }
 }

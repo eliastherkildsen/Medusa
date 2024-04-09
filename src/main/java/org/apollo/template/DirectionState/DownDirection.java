@@ -36,26 +36,6 @@ public class DownDirection implements Directionable{
     }
 
     @Override
-    public void getYVelocity() {
-
-    }
-
-    @Override
-    public void getXVelocity() {
-
-    }
-
-    @Override
-    public void getRotation() {
-
-    }
-
-    @Override
-    public void getDirection() {
-
-    }
-
-    @Override
     public String getStateAsString() {
         return null;
     }

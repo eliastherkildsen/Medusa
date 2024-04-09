@@ -15,6 +15,7 @@ public class Snake implements Character {
     private double xPos = 200;
     private double yPos = 200;
     private double movementSpeed = 50;
+    private int rotation;
 
     // endregion
 
@@ -32,8 +33,8 @@ public class Snake implements Character {
     }
 
 
-    public void moveSnake(KeyCode keyCodePressed){
-        directionable.change(this, keyCodePressed);
+    public void moveSnake(Direction direction){
+        directionable.change(direction);
     }
     public void updateSnakePosition(){
 
@@ -59,6 +60,11 @@ public class Snake implements Character {
         xVelocity = 0;
         this.yVelocity = yVelocity;
     }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
+    }
+
     public double getMovementSpeed() {
         return movementSpeed;
     }
