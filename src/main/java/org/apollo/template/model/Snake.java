@@ -19,13 +19,14 @@ public class Snake implements Character {
     private double yPos = 200;
     private double movementSpeed = 25;
     private int rotation = 0;
+    private Direction directionNow = Direction.DOWN;
 
     // endregion
 
 
     public Snake() {
         this.setDirectional(new StillDirection(this));
-        this.snakeHead = new SnakeHead();
+        this.snakeHead = new SnakeHead(directionNow);
         setStartingPos(200,200);
 
     }
@@ -38,7 +39,7 @@ public class Snake implements Character {
 
     public void moveSnake(Direction direction){
         directionable.change(direction);
-        //rotateSnake();
+        directionNow = direction;
     }
     public void updateSnakePosition(){
 
@@ -47,6 +48,9 @@ public class Snake implements Character {
 
         snakeHead.setLayoutX(xPos += xVelocity);
         snakeHead.setLayoutY(yPos += yVelocity);
+
+        snakeHead.changeHeadRotation(directionNow);
+
 
     }
     //TODO doesnt work as intended, needs refactor.
