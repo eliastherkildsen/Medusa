@@ -1,8 +1,11 @@
 package org.apollo.template.model;
 
+import javafx.animation.RotateTransition;
 import javafx.scene.input.KeyCode;
+import javafx.scene.transform.Rotate;
 import org.apollo.template.DirectionState.Directionable;
 import org.apollo.template.DirectionState.StillDirection;
+import org.apollo.template.DirectionState.UpDirection;
 import org.apollo.template.model.snake.SnakeHead;
 
 
@@ -14,13 +17,14 @@ public class Snake implements Character {
     private double xVelocity, yVelocity;
     private double xPos = 200;
     private double yPos = 200;
-    private double movementSpeed = 50;
+    private double movementSpeed = 25;
+    private int rotation = 0;
 
     // endregion
 
 
     public Snake() {
-        this.setDirectional(new StillDirection());
+        this.setDirectional(new StillDirection(this));
         this.snakeHead = new SnakeHead();
         setStartingPos(200,200);
 
@@ -32,8 +36,9 @@ public class Snake implements Character {
     }
 
 
-    public void moveSnake(KeyCode keyCodePressed){
-        directionable.change(this, keyCodePressed);
+    public void moveSnake(Direction direction){
+        directionable.change(direction);
+        //rotateSnake();
     }
     public void updateSnakePosition(){
 
@@ -44,8 +49,15 @@ public class Snake implements Character {
         snakeHead.setLayoutY(yPos += yVelocity);
 
     }
+    //TODO doesnt work as intended, needs refactor.
+    private void rotateSnake(){
+        Rotate rotate = new Rotate();
+        rotate.setPivotX(snakeHead.getWidth() / 2);
+        rotate.setPivotY(snakeHead.getHeight() / 2);
 
-
+        rotate.setAngle(rotation);
+        snakeHead.getTransforms().add(rotate);
+    }
 
     // region getter & setters
     public void setXVelocity(double xVelocity) {
@@ -59,6 +71,11 @@ public class Snake implements Character {
         xVelocity = 0;
         this.yVelocity = yVelocity;
     }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
+    }
+
     public double getMovementSpeed() {
         return movementSpeed;
     }

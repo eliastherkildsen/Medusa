@@ -19,6 +19,7 @@ import org.apollo.template.DirectionState.*;
 import org.apollo.template.Service.Debugger.DebugMessage;
 import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
+import org.apollo.template.model.Direction;
 import org.apollo.template.model.Snake;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -142,23 +143,22 @@ public class GameController implements Initializable {
                 toggleEscState();
 
             }
-
             // handles key press directions - up, down, left, right
-            if (keyEvent.getCode().equals(KeyCode.UP)){
+            if (keyEvent.getCode().equals(KeyCode.UP) || keyEvent.getCode().equals(KeyCode.W)){
                 DebugMessage.info("GameController - LoadListener","Up key pressed");
-                snake.moveSnake(keyEvent.getCode());
+                snake.moveSnake(Direction.UP);
             }
-            if (keyEvent.getCode().equals(KeyCode.DOWN)){
+            if (keyEvent.getCode().equals(KeyCode.DOWN) || keyEvent.getCode().equals(KeyCode.S)){
                 DebugMessage.info("GameController - LoadListener","Down key pressed");
-                snake.moveSnake(keyEvent.getCode());
+                snake.moveSnake(Direction.DOWN);
             }
-            if (keyEvent.getCode().equals(KeyCode.LEFT)){
+            if (keyEvent.getCode().equals(KeyCode.LEFT) || keyEvent.getCode().equals(KeyCode.A)){
                 DebugMessage.info("GameController - LoadListener","Left key pressed");
-                snake.moveSnake(keyEvent.getCode());
+                snake.moveSnake(Direction.LEFT);
             }
-            if (keyEvent.getCode().equals(KeyCode.RIGHT)){
+            if (keyEvent.getCode().equals(KeyCode.RIGHT) || keyEvent.getCode().equals(KeyCode.D)){
                 DebugMessage.info("GameController - LoadListener","Right key pressed");
-                snake.moveSnake(keyEvent.getCode());
+                snake.moveSnake(Direction.RIGHT);
             }
         });
     }
@@ -186,7 +186,7 @@ public class GameController implements Initializable {
      * Method for setting the snake's starting direction.
      */
     private void setStartDirection() {
-        snake.setDirectional(new StillDirection());
+        snake.setDirectional(new StillDirection(snake));
         DebugMessage.info(this, "Setting the snake's starting direction to \"StillDirection\"");
     }
 
