@@ -108,14 +108,11 @@ public class GameController implements Initializable {
                     DebugMessage.info("GameController - LoadListener","Escape key pressed");
 
                     if (!escSwitchStage) {
-                        System.out.println("YEAH!");
                         vBoxPausedGame.setVisible(true);
                         DebugMessage.info("GameController - LoadListener", "Game paused");
                     }
 
                     if (escSwitchStage){
-                        System.out.println("NEARHH!");
-
                         vBoxPausedGame.setVisible(false);
                         DebugMessage.info("GameController - LoadListener", "Game resumed");
                     }
@@ -168,7 +165,7 @@ public class GameController implements Initializable {
      * Method for setting the snake's starting direction.
      */
     private void setStartDirection() {
-        snake.setDirectionable(new StillDirection());
+        snake.setDirectional(new StillDirection());
         DebugMessage.info(this, "Setting the snake's starting direction to \"StillDirection\"");
     }
 

@@ -6,8 +6,10 @@ package org.apollo.template.Controller;
 
  */
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import org.apollo.template.Service.Alert.AlertComp;
@@ -30,7 +32,11 @@ public class MainController implements Initializable, Alertable<VBox> {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeView(ViewList.MENU, BorderPaneRegion.CENTER);
+
     }
+
+
+
 
     /**
      * Method for loading a container from a fxml file into the main Borderpane
@@ -63,6 +69,8 @@ public class MainController implements Initializable, Alertable<VBox> {
         }
         return INSTANCE;
     }
+
+
     @Override
     public void getAlertArea(){
     }

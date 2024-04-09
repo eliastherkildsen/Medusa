@@ -17,7 +17,9 @@ public class RightDirection implements Directionable{
     public void change(Snake snake, KeyCode keyCode) {
         if (keyCode.equals(KeyCode.UP)){
             snake.setDirectional(new UpDirection());
+
             DebugMessage.info(this, "Up direction");
+
             snake.setYVelocity(-snake.getMovementSpeed());
 
         }
