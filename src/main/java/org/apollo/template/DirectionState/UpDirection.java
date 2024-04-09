@@ -8,12 +8,16 @@ public class UpDirection implements Directionable{
     @Override
     public void change(Snake snake, KeyCode keyCode) {
         if (keyCode.equals(KeyCode.LEFT)){
-            snake.setDirectionable(new LeftDirection());
+            snake.setDirectional(new LeftDirection());
             DebugMessage.info(this, "Left direction");
+            snake.setXVelocity(-snake.getMovementSpeed());
+
         }
         if (keyCode.equals(KeyCode.RIGHT)){
-            snake.setDirectionable(new RightDirection());
+            snake.setDirectional(new RightDirection());
             DebugMessage.info(this, "Right direction");
+            snake.setXVelocity(snake.getMovementSpeed());
+
         }
     }
 

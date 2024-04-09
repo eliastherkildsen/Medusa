@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class SnakeHead extends Pane {
-
     private SnakeEye rightEye = new SnakeEye(2f);
     private SnakeEye leftEye = new SnakeEye(2f);
     private SnakeNose noseLeft = new SnakeNose(0.5F);
@@ -32,4 +31,5 @@ public class SnakeHead extends Pane {
 
         getChildren().addAll(snakeHead, hornLeft, hornRight, noseLeft, noseRight, rightEye, leftEye);
     }
+
 }

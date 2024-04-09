@@ -1,5 +1,9 @@
 package org.apollo.template.Controller;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.apollo.template.DirectionState.*;
@@ -20,37 +25,60 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
 
+    // region instance variables
 
     @FXML
     private StackPane gameStackPane;
     @FXML
     private ImageView gameView;
     @FXML
-    private Canvas snakeCanvas, eatableCanvas;
+    private Canvas eatableCanvas;
+    @FXML
+    private Pane snakeCanvas;
     @FXML
     private Label scoreLabel, pausedGameLabel;
     @FXML
     private VBox vBoxPausedGame;
     @FXML
     private Button btnResume, btnMainMenu, btnExit;
-
     private boolean escSwitchStage = false;
 
+    private Snake snake = new Snake();
+    private Timeline gameLoop;
+    private final javafx.util.Duration GAME_TICK = javafx.util.Duration.millis(200); // Adjust tick duration as needed
 
-    Snake snake = new Snake();
-    
 
+
+    // endregion
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         setStartDirection();
         visibility();
         gameStackPane.setFocusTraversable(true);
-
         loadListener();
+        snakeCanvas.getChildren().add(snake.getSnakeHead());
+
+        // Initialize the game loop timer
+        gameLoop = new Timeline(new KeyFrame(
+                GAME_TICK,
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        // Update game logic here
+                        updateGame();
+                    }
+                }
+        ));
+        gameLoop.setCycleCount(Animation.INDEFINITE); // Run the timer indefinitely
+        gameLoop.play(); // Start the game loop
+
     }
 
-
+    private void updateGame() {
+        snake.updateSnakePosition();
+    }
 
     /**
      * Method for handling key press events to change the direction of the snake.
@@ -58,7 +86,6 @@ public class GameController implements Initializable {
      * direction is updated accordingly.
      * If the ESC key is pressed, the game is paused.
      *
-     * @param keyEvent a KeyEvent object containing information about the key press event that triggered the action
      */
     private void loadListener() {
         gameStackPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -106,17 +133,6 @@ public class GameController implements Initializable {
     private void toggleEscState() {
         escSwitchStage = !escSwitchStage;
     }
-
-
-
-
-
-
-
-
-
-
-
     private void visibility() {
         snakeCanvas.setVisible(true);
         eatableCanvas.setVisible(false);
@@ -125,14 +141,15 @@ public class GameController implements Initializable {
 
 
     private void setStartDirection() {
-        snake.setDirectionable(new StillDirection());
+        snake.setDirectional(new StillDirection());
     }
 
+
+    // region buttons
 
     public void onResume(){
         vBoxPausedGame.setVisible(false);
         toggleEscState();
-
     }
 
     public void onMainMenu(){
@@ -143,5 +160,5 @@ public class GameController implements Initializable {
         System.exit(0);
     }
 
-
+    // endregion
 }

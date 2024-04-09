@@ -14,7 +14,7 @@
             <Image url="@images/snake_background.jpg" />
          </image>
       </ImageView>
-      <Canvas fx:id="snakeCanvas" height="400.0" width="600.0" />
+      <Pane fx:id="snakeCanvas" prefHeight="200.0" prefWidth="200.0" />
       <Canvas fx:id="eatableCanvas" height="400.0" layoutX="10.0" layoutY="10.0" width="600.0" />
       <Label fx:id="scoreLabel" text="SCORE" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>

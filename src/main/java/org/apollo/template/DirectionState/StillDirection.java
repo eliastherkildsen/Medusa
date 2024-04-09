@@ -8,19 +8,19 @@ public class StillDirection implements Directionable{
     @Override
     public void change(Snake snake, KeyCode keyCode) {
         if (keyCode.equals(KeyCode.UP)){
-            snake.setDirectionable(new UpDirection());
+            snake.setDirectional(new UpDirection());
             DebugMessage.info(this, "Up direction");
         }
         if (keyCode.equals(KeyCode.DOWN)){
-            snake.setDirectionable(new DownDirection());
+            snake.setDirectional(new DownDirection());
             DebugMessage.info(this, "Down direction");
         }
         if (keyCode.equals(KeyCode.LEFT)){
-            snake.setDirectionable(new LeftDirection());
+            snake.setDirectional(new LeftDirection());
             DebugMessage.info(this, "Left direction");
         }
         if (keyCode.equals(KeyCode.RIGHT)){
-            snake.setDirectionable(new RightDirection());
+            snake.setDirectional(new RightDirection());
             DebugMessage.info(this, "Right direction");
         }
 
