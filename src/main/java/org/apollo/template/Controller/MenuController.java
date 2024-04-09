@@ -9,8 +9,10 @@ public class MenuController {
         MainController.getInstance().changeView(ViewList.REGISTRATION, BorderPaneRegion.CENTER);
     }
 
+    public void onScoreboard(){
+        MainController.getInstance().changeView(ViewList.SCOREBOARD, BorderPaneRegion.CENTER);
+    }
+
     public void onSettings() {MainController.getInstance().changeView(ViewList.SETTINGS, BorderPaneRegion.CENTER);}
-
-
 
 }

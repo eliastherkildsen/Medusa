@@ -21,7 +21,9 @@ public enum ViewList {
 
     SETTINGS("SettingsView.fxml", SettingsController.getInstance()),
 
-    REGISTRATION("RegistrationView.fxml", new RegistrationController());
+    REGISTRATION("RegistrationView.fxml", new RegistrationController()),
+
+    SCOREBOARD("ScoreView.fxml", new ScoreController());
 
     private final String FXML_FILE_NAME; // FXML file name of the view
     private final Object CONTROLLER; // Controller associated with the view

@@ -21,7 +21,7 @@
                </font>
             </Text>
             <Button mnemonicParsing="false" onAction="#onNewGame" text="NEW GAME" textAlignment="CENTER" />
-            <Button layoutX="271.0" layoutY="26.0" mnemonicParsing="false" text="SCORBOARD" />
+            <Button layoutX="271.0" layoutY="26.0" mnemonicParsing="false" onAction="#onScoreboard" text="SCOREBOARD" />
             <Button layoutX="276.0" layoutY="164.0" mnemonicParsing="false" onAction="#onSettings" text="SETTINGS" />
          </children>
          <padding>
