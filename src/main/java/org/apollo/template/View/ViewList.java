@@ -19,7 +19,7 @@ public enum ViewList {
     MENU("MenuView.fxml", new MenuController()),
     GAME("GameView.fxml", new GameController()),
 
-    SETTINGS("SettingsView.fxml", new SettingsController()),
+    SETTINGS("SettingsView.fxml", SettingsController.getInstance()),
 
     REGISTRATION("RegistrationView.fxml", new RegistrationController());
 
