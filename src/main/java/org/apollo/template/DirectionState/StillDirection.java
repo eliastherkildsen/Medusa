@@ -24,24 +24,24 @@ public class StillDirection implements Directionable{
     @Override
     public void change(Direction direction) {
         if (direction.equals(Direction.UP)){
-            character.setDirectional(new UpDirection());
+            character.setDirectional(new UpDirection(character));
             DebugMessage.info(this, "Up direction");
         }
         if (direction.equals(Direction.DOWN)){
-            character.setDirectional(new DownDirection());
+            character.setDirectional(new DownDirection(character));
             DebugMessage.info(this, "Down direction");
         }
         if (direction.equals(Direction.LEFT)){
-            character.setDirectional(new LeftDirection());
+            character.setDirectional(new LeftDirection(character));
             DebugMessage.info(this, "Left direction");
         }
         if (direction.equals(Direction.RIGHT)){
-            character.setDirectional(new RightDirection());
+            character.setDirectional(new RightDirection(character));
             DebugMessage.info(this, "Right direction");
         }
     }
     @Override
     public String getStateAsString() {
-        return "Still";
+        return "STILL";
     }
 }
