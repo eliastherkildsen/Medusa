@@ -5,6 +5,14 @@ import org.apollo.template.Service.Debugger.DebugMessage;
 import org.apollo.template.model.Snake;
 
 public class RightDirection implements Directionable{
+
+    /**
+     * Method for changing the snake's direction based on the pressed key code - either up or down direction.
+     * Note: The "left" direction change is not allowed as the snake cannot turn 180 degrees.
+     *
+     * @param snake the snake object whose direction will be changed
+     * @param keyCode the key code representing the direction change
+     */
     @Override
     public void change(Snake snake, KeyCode keyCode) {
         if (keyCode.equals(KeyCode.UP)){
