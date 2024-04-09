@@ -14,6 +14,7 @@ public class StillDirection implements Directionable{
      */
     @Override
     public void change(Snake snake, KeyCode keyCode) {
+
         if (keyCode.equals(KeyCode.UP)){
             snake.setDirectional(new UpDirection());
             DebugMessage.info(this, "Up direction");

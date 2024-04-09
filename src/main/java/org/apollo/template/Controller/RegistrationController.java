@@ -24,20 +24,30 @@ public class RegistrationController implements Initializable {
     private TextField txfPlayerName;
 
 
-    public static String playerName = "Player 1";
+    public static String playerName;
 
 
-
+    /**
+     * Method for initializing the controller by setting focus traversal and loading key press event listeners.
+     *
+     * @param url the location for resolving paths, or null if unknown.
+     * @param resourceBundle the resource bundle for this controller, or null if none.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        registrationStackPane.setFocusTraversable(true);
+        // resets player name to default name "Player 1"
+        playerName = "Player 1";
 
+        registrationStackPane.setFocusTraversable(true);
         loadListener();
     }
 
 
-
+    /**
+     * Method for setting up a key press event listener for handling the "Enter" key press event.
+     * If the "Enter" key is pressed, it triggers a method to get the player's name and changes the view to the game view.
+     */
     private void loadListener() {
 
         registrationStackPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -45,7 +55,6 @@ public class RegistrationController implements Initializable {
             public void handle(KeyEvent keyEvent) {
 
                 if (keyEvent.getCode().equals(KeyCode.ENTER)){
-
                     getPlayerName();
                     MainController.getInstance().changeView(ViewList.GAME, BorderPaneRegion.CENTER);
                 }
@@ -54,19 +63,27 @@ public class RegistrationController implements Initializable {
     }
 
 
-
-
+    /**
+     * Method for starting the game
+     */
     public void onStartGame(){
         getPlayerName();
         MainController.getInstance().changeView(ViewList.GAME, BorderPaneRegion.CENTER);
     }
 
+
+    /**
+     * Method for cancelling a new game and navigate to the main menu
+     */
     public void onCancel(){
         txfPlayerName.clear();
         MainController.getInstance().changeView(ViewList.MENU, BorderPaneRegion.CENTER);
     }
 
 
+    /**
+     * Method for getting the entered player name
+     */
     private void getPlayerName() {
         playerName = txfPlayerName.getText();
     }
