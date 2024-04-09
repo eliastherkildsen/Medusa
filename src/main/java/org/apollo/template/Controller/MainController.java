@@ -6,12 +6,11 @@ package org.apollo.template.Controller;
 
  */
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import org.apollo.template.Service.Alert.AlertComp;
 import org.apollo.template.Service.Alert.Alertable;
 import org.apollo.template.Service.Debugger.DebugMessage;
@@ -19,6 +18,8 @@ import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.media.MediaPlayer;
+
 
 import static org.apollo.template.ViewLoader.loadView;
 

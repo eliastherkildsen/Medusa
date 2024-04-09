@@ -199,7 +199,6 @@ public class GameController implements Initializable {
     public void onResume(){
         vBoxPausedGame.setVisible(false);
         toggleEscState();
-
     }
 
 
