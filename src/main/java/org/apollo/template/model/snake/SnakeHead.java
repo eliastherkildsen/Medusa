@@ -11,7 +11,7 @@ public class SnakeHead extends Pane {
     private SnakeNose noseRight = new SnakeNose(0.5F);
     private SnakeHorn hornLeft = new SnakeHorn(5F);
     private SnakeHorn hornRight = new SnakeHorn(5F);
-    private SnakeBody snakeHead = new SnakeBody(1F);
+    private SnakeBody snakeHead = new SnakeBody(2F);
 
     public SnakeHead() {
 
