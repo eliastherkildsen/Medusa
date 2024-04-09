@@ -11,7 +11,9 @@ public class Snake implements Character {
     // region instance variables
     private Directionable directionable;
     private SnakeHead snakeHead;
-    private double xVelocity, yVelocity, xPos, yPos;
+    private double xVelocity, yVelocity;
+    private double xPos = 200;
+    private double yPos = 200;
     private double movementSpeed = 50;
 
     // endregion

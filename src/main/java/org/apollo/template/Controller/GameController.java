@@ -89,8 +89,19 @@ public class GameController implements Initializable {
         // checks if the game is paused
         if (pausedState) return;
         updateDebugLab();
-        snake.updateSnakePosition();
 
+        // checks if the snake is on screen
+        if (isOnScreen()) {
+            snake.updateSnakePosition();
+        }
+    }
+
+    private boolean isOnScreen(){
+
+        if (snake.getXPos() <= 0 || snake.getXPos() >= snakeCanvas.getWidth()) return false;
+        if (snake.getYPos() <= 0 || snake.getYPos() >= snakeCanvas.getWidth()) return false;
+
+        return true;
     }
 
     private void updateDebugLab() {
