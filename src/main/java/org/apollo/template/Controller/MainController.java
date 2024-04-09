@@ -29,6 +29,7 @@ public class MainController implements Initializable, Alertable<VBox> {
     @FXML
     private VBox VBAlert;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         changeView(ViewList.MENU, BorderPaneRegion.CENTER);

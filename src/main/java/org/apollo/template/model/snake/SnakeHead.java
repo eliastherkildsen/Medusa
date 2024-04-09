@@ -15,9 +15,6 @@ public class SnakeHead extends Pane {
 
     public SnakeHead() {
 
-        setTranslateX(200);
-        setTranslateY(200);
-
         noseRight.setLayout(6, 16);
         noseLeft.setLayout(-6,16);
         rightEye.setLayout(-12, 0);
