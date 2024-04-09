@@ -55,9 +55,7 @@ public class RegistrationController implements Initializable {
             public void handle(KeyEvent keyEvent) {
 
                 if (keyEvent.getCode().equals(KeyCode.ENTER)){
-                    System.out.println(playerName);
                     getPlayerName();
-                    System.out.println(playerName);
                     MainController.getInstance().changeView(ViewList.GAME, BorderPaneRegion.CENTER);
                 }
             }
