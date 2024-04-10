@@ -21,6 +21,8 @@ import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
 import org.apollo.template.model.Direction;
 import org.apollo.template.model.Snake;
+import org.apollo.template.model.snake.SnakeBodyPart;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -67,7 +69,6 @@ public class GameController implements Initializable {
         gameStackPane.setFocusTraversable(true);
 
         loadListener();
-        snakeCanvas.getChildren().add(snake.getSnakeHead());
 
         // Initialize the game loop timer
         gameLoop = new Timeline(new KeyFrame(
@@ -87,14 +88,35 @@ public class GameController implements Initializable {
 
     private void updateGame() {
 
+        // checks if the snake is drawn.
+        draw();
+
+
         // checks if the game is paused
         if (pausedState) return;
         updateDebugLab();
 
         // checks if the snake is on screen
-        if (isOnScreen()) {
+        if (isOnScreen() && !snake.isDead()) {
             snake.update();
         }
+    }
+
+    private void draw() {
+
+        // checks if the snake head has been drawn.
+        if (!snakeCanvas.getChildren().contains(snake.getSnakeHead())){
+            snakeCanvas.getChildren().add(snake.getSnakeHead());
+        }
+
+        // checks if all the body parts has been drawn.
+        for (SnakeBodyPart sbp : snake.getSnakeBodyPartList()){
+            if (!snakeCanvas.getChildren().contains(sbp)){
+                snakeCanvas.getChildren().add(sbp);
+            }
+        }
+
+
     }
 
     private boolean isOnScreen(){
@@ -152,6 +174,11 @@ public class GameController implements Initializable {
             if (keyEvent.getCode().equals(KeyCode.RIGHT) || keyEvent.getCode().equals(KeyCode.D)){
                 snake.moveSnake(Direction.RIGHT);
             }
+
+            if (keyEvent.getCode().equals(KeyCode.R)){
+                snake.addBodyPart();
+            }
+
         });
     }
 
@@ -207,6 +234,11 @@ public class GameController implements Initializable {
      */
     public void onExit(){
         System.exit(0);
+    }
+
+    @FXML
+    protected void btnADD(){
+        snake.addBodyPart();
     }
 
     // endregion

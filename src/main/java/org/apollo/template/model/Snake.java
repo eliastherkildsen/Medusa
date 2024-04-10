@@ -1,8 +1,13 @@
 package org.apollo.template.model;
 
+import javafx.scene.paint.Color;
 import org.apollo.template.DirectionState.Directionable;
 import org.apollo.template.DirectionState.StillDirection;
+import org.apollo.template.model.snake.SnakeBodyPart;
 import org.apollo.template.model.snake.SnakeHead;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Snake implements Character {
@@ -14,6 +19,8 @@ public class Snake implements Character {
     private double xPos = 200;
     private double yPos = 200;
     private double movementSpeed = 25;
+    private List<SnakeBodyPart> snakeBodyPartList;
+    private boolean dead = false;
 
     // endregion
 
@@ -22,11 +29,47 @@ public class Snake implements Character {
         this.snakeHead = new SnakeHead(directionable.getStateAsDirection());
         setStartingPos(xPos,yPos);
 
+        this.snakeBodyPartList = new LinkedList<>();
+
+    }
+
+    public void addBodyPart(){
+        this.snakeBodyPartList.add(new SnakeBodyPart());
     }
 
     @Override
     public void update() {
+        updateBodyPartPosition();
         updateSnakePosition();
+        dead = checkBodyPartColission();
+
+
+
+    }
+
+    private void updateBodyPartPosition() {
+
+
+        for (int i = 0; i < snakeBodyPartList.size() ; i++) {
+
+            if (i == 0){
+                snakeBodyPartList.get(i).move(xPos, yPos);
+            }
+
+            else snakeBodyPartList.get(i).move(snakeBodyPartList.get(i - 1).getOldX(), snakeBodyPartList.get(i - 1).getOldY());
+        }
+
+    }
+
+    private boolean checkBodyPartColission(){
+        // check if the head collides with the body.
+        for (SnakeBodyPart snakeBodyPart : snakeBodyPartList){
+            if (xPos == snakeBodyPart.getTranslateX() && yPos == snakeBodyPart.getTranslateY()) return true;
+        }
+
+        return false;
+
+
     }
 
     public void moveSnake(Direction direction){
@@ -47,6 +90,15 @@ public class Snake implements Character {
 
     }
     // region getter & setters
+
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public List<SnakeBodyPart> getSnakeBodyPartList() {
+        return snakeBodyPartList;
+    }
 
     public void setStartingPos(double x, double y){
         snakeHead.setLayoutX(x);
@@ -86,6 +138,9 @@ public class Snake implements Character {
     public Direction getDirection() {
         return directionable.getStateAsDirection();
     }
+
+
+
     // endregion
 
 }
