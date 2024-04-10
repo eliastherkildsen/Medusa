@@ -21,6 +21,7 @@ public class Snake implements Character {
     private double movementSpeed = 50;
     private List<SnakeBodyPart> snakeBodyPartList;
     private boolean dead = false;
+    private int point;
 
     // endregion
 
@@ -32,9 +33,14 @@ public class Snake implements Character {
         this.snakeBodyPartList = new LinkedList<>();
 
     }
-
+    @Override
     public void addBodyPart(){
         this.snakeBodyPartList.add(new SnakeBodyPart());
+    }
+
+    @Override
+    public void removeBodyPart() {
+        this.snakeBodyPartList.removeLast();
     }
 
     @Override
@@ -43,8 +49,11 @@ public class Snake implements Character {
         updateSnakePosition();
         dead = checkBodyPartColission();
 
+    }
 
-
+    @Override
+    public void addPoint(int point) {
+        this.point += point;
     }
 
     private void updateBodyPartPosition() {
@@ -56,7 +65,10 @@ public class Snake implements Character {
                 snakeBodyPartList.get(i).move(xPos, yPos);
             }
 
-            else snakeBodyPartList.get(i).move(snakeBodyPartList.get(i - 1).getOldX(), snakeBodyPartList.get(i - 1).getOldY());
+            else {
+                snakeBodyPartList.get(i).move(snakeBodyPartList.get(i - 1).getOldX(), snakeBodyPartList.get(i - 1).getOldY());
+            }
+
         }
 
     }
@@ -88,6 +100,11 @@ public class Snake implements Character {
     }
     // region getter & setters
 
+
+    @Override
+    public int getPoint() {
+        return this.point;
+    }
 
     public boolean isDead() {
         return dead;

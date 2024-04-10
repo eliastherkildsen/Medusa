@@ -3,24 +3,22 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <StackPane fx:id="gameStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="gameView" fitHeight="413.0" fitWidth="610.0" pickOnBounds="true">
-         <image>
-            <Image url="@images/background_night.jpg" />
-         </image>
-      </ImageView>
       <Pane fx:id="boardPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+      <Pane fx:id="eatableLayer" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
       <Pane fx:id="snakeCanvas" prefHeight="200.0" prefWidth="200.0" />
-      <Canvas fx:id="eatableCanvas" height="400.0" layoutX="10.0" layoutY="10.0" width="600.0" />
-      <Label fx:id="scoreLabel" text="SCORE" StackPane.alignment="TOP_CENTER">
+      <Canvas fx:id="eatableCanvas" height="600.0" layoutX="10.0" layoutY="10.0" width="600.0" />
+      <Label fx:id="scoreLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="136.0" text="SCORE" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>
             <Insets top="10.0" />
          </StackPane.margin>
+         <font>
+            <Font size="24.0" />
+         </font>
       </Label>
       <VBox focusTraversable="true" prefHeight="39.0" prefWidth="100.0">
          <children>

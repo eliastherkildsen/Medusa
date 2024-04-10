@@ -15,19 +15,25 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import org.apollo.template.App;
 import org.apollo.template.DirectionState.*;
 import org.apollo.template.Service.Debugger.DebugMessage;
 import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
 import org.apollo.template.model.Direction;
+import org.apollo.template.model.Food.Apple;
+import org.apollo.template.model.Food.Food;
 import org.apollo.template.model.Map;
 import org.apollo.template.model.Snake;
+import org.apollo.template.model.Updateable;
 import org.apollo.template.model.snake.SnakeBodyPart;
 
 import java.net.URL;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class GameController implements Initializable {
+public class GameController implements Initializable, Updateable {
 
     // region instance variables
 
@@ -38,22 +44,20 @@ public class GameController implements Initializable {
     @FXML
     private Canvas eatableCanvas;
     @FXML
-    private Pane snakeCanvas;
-    @FXML
-    private Pane boardPane;
+    private Pane snakeCanvas, boardPane, eatableLayer;
     @FXML
     private Label scoreLabel, pausedGameLabel, xPos, yPos, directionLab;
     @FXML
     private VBox vBoxPausedGame;
     @FXML
     private Button btnResume, btnMainMenu, btnExit;
-
     private boolean pausedState = false;
     private Map map = new Map();
 
     private Snake snake = new Snake();
     private Timeline gameLoop;
     private final javafx.util.Duration GAME_TICK = javafx.util.Duration.millis(200); // Adjust tick duration as needed
+    private List<Food> foodList;
 
 
 
@@ -68,13 +72,17 @@ public class GameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // instantiating food list.
+        foodList = new LinkedList<>();
+
         setStartDirection();
-        visibility();
+        menuVisibility();
         gameStackPane.setFocusTraversable(true);
 
         loadListener();
 
-        map.drawBackground(boardPane,600,600,50);
+        map.drawBackground(boardPane, App.screenWidth,App.screenHeight,50);
 
         // Initialize the game loop timer
         gameLoop = new Timeline(new KeyFrame(
@@ -83,7 +91,7 @@ public class GameController implements Initializable {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         // Update game logic here
-                        updateGame();
+                        update();
                     }
                 }
         ));
@@ -92,23 +100,44 @@ public class GameController implements Initializable {
 
     }
 
-    private void updateGame() {
-
-        // checks if the snake is drawn.
-        draw();
-
+    @Override
+    public void update() {
 
         // checks if the game is paused
         if (pausedState) return;
-        updateDebugLab();
+
+        // updating score.
+        scoreLabel.setText(String.valueOf("SCORE: " + snake.getPoint()));
 
         // checks if the snake is on screen
         if (isOnScreen() && !snake.isDead()) {
+            // check collision with food
+            checkCollisionFood();
+            // updating debug information.
+            updateDebugLab();
+            // rendering all grapes
+            render();
+
             snake.update();
+
         }
     }
 
-    private void draw() {
+    /**
+     * Method checks if the snake has collided with any of the food.
+     */
+    private void checkCollisionFood() {
+        for (Food food : foodList){
+            if(food.isColided(snake.getXPos(), snake.getYPos())){
+                food.eat(snake);
+                foodList.remove(food);
+                eatableLayer.getChildren().remove(food);
+            }
+        }
+
+    }
+
+    private void render() {
 
         // checks if the snake head has been drawn.
         if (!snakeCanvas.getChildren().contains(snake.getSnakeHead())){
@@ -122,6 +151,12 @@ public class GameController implements Initializable {
             }
         }
 
+        // checks if all the food in foodlist has benn drawn.
+        for (Food food : foodList){
+            if (!eatableLayer.getChildren().contains(food)){
+                eatableLayer.getChildren().add(food);
+            }
+        }
 
     }
 
@@ -137,9 +172,6 @@ public class GameController implements Initializable {
         xPos.setText(String.valueOf(snake.getXPos()));
         yPos.setText(String.valueOf(snake.getYPos()));
         directionLab.setText(String.valueOf(snake.getDirection()));
-
-
-
     }
 
     /**
@@ -185,6 +217,13 @@ public class GameController implements Initializable {
                 snake.addBodyPart();
             }
 
+            if (keyEvent.getCode().equals(KeyCode.Q)){
+                foodList.add(new Apple(125, 125));
+            }
+
+
+
+
         });
     }
 
@@ -200,7 +239,7 @@ public class GameController implements Initializable {
     /**
      * Method for setting visibility of game elements at the beginning of the game (called during initialization).
      */
-    private void visibility() {
+    private void menuVisibility() {
         snakeCanvas.setVisible(true);
         eatableCanvas.setVisible(false);
         vBoxPausedGame.setVisible(false);

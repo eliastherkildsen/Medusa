@@ -29,7 +29,7 @@ public class SnakeHeadSkull extends Group implements Snakeable {
 
     public void drawBody(){
         body = new Circle();
-        body.setRadius(size * 10);
+        body.setRadius(25);
         body.setFill(Color.GREEN);
     }
     @Override

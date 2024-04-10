@@ -58,6 +58,7 @@ public class SnakeHead extends Pane {
         snakeHead.setLayout(0,0);
     }
 
-
-
+    public Direction getDirectionNow() {
+        return directionNow;
+    }
 }
