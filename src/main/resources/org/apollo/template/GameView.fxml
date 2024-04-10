@@ -9,9 +9,9 @@
 
 <StackPane fx:id="gameStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="gameView" fitHeight="405.0" fitWidth="600.0" pickOnBounds="true">
+      <ImageView fx:id="gameView" fitHeight="413.0" fitWidth="610.0" pickOnBounds="true">
          <image>
-            <Image url="@images/snake_background.jpg" />
+            <Image url="@images/background_night.jpg" />
          </image>
       </ImageView>
       <Pane fx:id="boardPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />

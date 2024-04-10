@@ -4,11 +4,11 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class SnakeableBody extends Group implements Snakeable {
+public class SnakeHeadSkull extends Group implements Snakeable {
     private Circle body;
     private float size = .3f;
 
-    public SnakeableBody(){
+    public SnakeHeadSkull(){
         initialize();
     }
 
@@ -17,7 +17,7 @@ public class SnakeableBody extends Group implements Snakeable {
         body.setRotate(deg);
     }
 
-    public SnakeableBody(Float size){
+    public SnakeHeadSkull(Float size){
         this.size = size;
         initialize();
     }
