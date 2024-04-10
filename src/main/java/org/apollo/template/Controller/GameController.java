@@ -20,6 +20,7 @@ import org.apollo.template.Service.Debugger.DebugMessage;
 import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
 import org.apollo.template.model.Direction;
+import org.apollo.template.model.Map;
 import org.apollo.template.model.Snake;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +38,8 @@ public class GameController implements Initializable {
     @FXML
     private Pane snakeCanvas;
     @FXML
+    private Pane boardPane;
+    @FXML
     private Label scoreLabel, pausedGameLabel, xPos, yPos, directionLab;
     @FXML
     private VBox vBoxPausedGame;
@@ -44,6 +47,7 @@ public class GameController implements Initializable {
     private Button btnResume, btnMainMenu, btnExit;
 
     private boolean pausedState = false;
+    private Map map = new Map();
 
     private Snake snake = new Snake();
     private Timeline gameLoop;
@@ -68,7 +72,7 @@ public class GameController implements Initializable {
 
         loadListener();
         snakeCanvas.getChildren().add(snake.getSnakeHead());
-
+        map.drawBackground(boardPane,600,600,50);
         // Initialize the game loop timer
         gameLoop = new Timeline(new KeyFrame(
                 GAME_TICK,

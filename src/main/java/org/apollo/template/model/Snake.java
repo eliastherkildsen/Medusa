@@ -11,9 +11,9 @@ public class Snake implements Character {
     private Directionable directionable;
     private SnakeHead snakeHead;
     private double xVelocity, yVelocity;
-    private double xPos = 200;
-    private double yPos = 200;
-    private double movementSpeed = 25;
+    private double xPos = 25;
+    private double yPos = 25;
+    private double movementSpeed = 50;
 
     // endregion
 
@@ -41,9 +41,6 @@ public class Snake implements Character {
 
         snakeHead.setLayoutX(xPos += xVelocity);
         snakeHead.setLayoutY(yPos += yVelocity);
-
-        //snakeHead.changeHeadRotation(directionNow);
-
 
     }
     // region getter & setters

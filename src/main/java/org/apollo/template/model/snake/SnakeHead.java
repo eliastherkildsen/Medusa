@@ -5,11 +5,12 @@ import org.apollo.template.Service.Debugger.DebugMessage;
 import org.apollo.template.model.Direction;
 
 public class SnakeHead extends Pane {
-    private SnakeableEye rightEye = new SnakeableEye(2f);
-    private SnakeableEye leftEye = new SnakeableEye(2f);
-    private SnakeableNose noseLeft = new SnakeableNose(0.5F);
-    private SnakeableNose noseRight = new SnakeableNose(0.5F);
-    private SnakeableBody snakeHead = new SnakeableBody(2F);
+    private final float CONSTANTSIZE = 1F;
+    private SnakeableEye rightEye = new SnakeableEye(2f * CONSTANTSIZE);
+    private SnakeableEye leftEye = new SnakeableEye(2f * CONSTANTSIZE);
+    private SnakeableNose noseLeft = new SnakeableNose(0.5F * CONSTANTSIZE);
+    private SnakeableNose noseRight = new SnakeableNose(0.5F * CONSTANTSIZE);
+    private SnakeableBody snakeHead = new SnakeableBody(2F * CONSTANTSIZE);
     private Direction directionNow;
 
     public SnakeHead(Direction direction) {
