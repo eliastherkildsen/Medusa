@@ -16,8 +16,8 @@ public class Snake implements Character {
     private Directionable directionable;
     private SnakeHead snakeHead;
     private double xVelocity, yVelocity;
-    private double xPos = 200;
-    private double yPos = 200;
+    private double xPos = 225;
+    private double yPos = 225;
     private double movementSpeed = 50;
     private List<SnakeBodyPart> snakeBodyPartList;
     private boolean dead = false;

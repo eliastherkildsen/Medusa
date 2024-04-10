@@ -22,6 +22,8 @@ import org.apollo.template.View.ViewList;
 import org.apollo.template.model.Direction;
 import org.apollo.template.model.Map;
 import org.apollo.template.model.Snake;
+import org.apollo.template.model.snake.SnakeBodyPart;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 

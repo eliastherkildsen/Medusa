@@ -10,7 +10,7 @@ public class SnakeHead extends Pane {
     private SnakeableEye leftEye = new SnakeableEye(2f * CONSTANTSIZE);
     private SnakeableNose noseLeft = new SnakeableNose(0.5F * CONSTANTSIZE);
     private SnakeableNose noseRight = new SnakeableNose(0.5F * CONSTANTSIZE);
-    private SnakeableBody snakeHead = new SnakeableBody(2F * CONSTANTSIZE);
+    private SnakeHeadSkull snakeHead = new SnakeHeadSkull(2F * CONSTANTSIZE);
     private Direction directionNow;
 
     public SnakeHead(Direction direction) {

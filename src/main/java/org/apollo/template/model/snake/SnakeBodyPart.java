@@ -25,7 +25,6 @@ public class SnakeBodyPart extends Circle {
         int DIAMETER = 20;
         setRadius(DIAMETER);
 
-        move(200,200);
 
     }
 
