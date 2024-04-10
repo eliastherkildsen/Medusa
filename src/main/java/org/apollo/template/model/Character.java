@@ -2,7 +2,7 @@ package org.apollo.template.model;
 
 import org.apollo.template.DirectionState.Directionable;
 
-public interface Character {
+public interface Character extends Updateable {
 
     public void setDirectional (Directionable directionable);
 
@@ -10,4 +10,7 @@ public interface Character {
     public void setYVelocity(double yVelocity);
     public void setRotation(int rotation);
     public double getMovementSpeed();
+
+    @Override
+    public void update();
 }

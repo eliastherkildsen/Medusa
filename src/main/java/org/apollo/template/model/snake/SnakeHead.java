@@ -1,23 +1,21 @@
 package org.apollo.template.model.snake;
 
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import org.apollo.template.Service.Debugger.DebugMessage;
 import org.apollo.template.model.Direction;
 
 public class SnakeHead extends Pane {
-    private SnakeEye rightEye = new SnakeEye(2f);
-    private SnakeEye leftEye = new SnakeEye(2f);
-    private SnakeNose noseLeft = new SnakeNose(0.5F);
-    private SnakeNose noseRight = new SnakeNose(0.5F);
-    private SnakeHorn hornLeft = new SnakeHorn(5F,1F);
-    private SnakeHorn hornRight = new SnakeHorn(5F,1F);
-    private SnakeBody snakeHead = new SnakeBody(2F);
+    private SnakeableEye rightEye = new SnakeableEye(2f);
+    private SnakeableEye leftEye = new SnakeableEye(2f);
+    private SnakeableNose noseLeft = new SnakeableNose(0.5F);
+    private SnakeableNose noseRight = new SnakeableNose(0.5F);
+    private SnakeableHorn hornLeft = new SnakeableHorn(5F,1F);
+    private SnakeableHorn hornRight = new SnakeableHorn(5F,1F);
+    private SnakeableBody snakeHead = new SnakeableBody(2F);
     private Direction directionNow;
 
     public SnakeHead(Direction direction) {
-        DebugMessage.info(this.getClass().getSimpleName(),"Creating Snake Head");
+        DebugMessage.info(this.getClass().getSimpleName(),"Creating Snakeable Head");
         changeHeadRotation(direction);
         directionNow = direction;
         getChildren().addAll(snakeHead, hornLeft, hornRight, noseLeft, noseRight, rightEye, leftEye);
@@ -33,7 +31,7 @@ public class SnakeHead extends Pane {
             return;
         }
         directionNow = direction;
-        DebugMessage.info("SnakeHead - changeHeadRotation","Setting Snake Head direction: " + direction);
+        DebugMessage.info("SnakeHead - changeHeadRotation","Setting Snakeable Head direction: " + direction);
         switch (direction) {
             case UP:
                 noseRight.setLayout(-6, -16);
@@ -66,8 +64,8 @@ public class SnakeHead extends Pane {
                 hornRight.setLayout(10, -6);
                 break;
             case RIGHT:
-                hornLeft = new SnakeHorn(1F, 5F);
-                hornRight = new SnakeHorn(1F, 5F);
+                hornLeft = new SnakeableHorn(1F, 5F);
+                hornRight = new SnakeableHorn(1F, 5F);
                 noseRight.setLayout(16, 6);
                 noseLeft.setLayout(16, -6);
                 rightEye.setLayout(0, -12);
@@ -78,5 +76,7 @@ public class SnakeHead extends Pane {
         }
         snakeHead.setLayout(0,0);
     }
+
+
 
 }

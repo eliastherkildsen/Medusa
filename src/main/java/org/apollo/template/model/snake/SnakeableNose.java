@@ -3,16 +3,21 @@ package org.apollo.template.model.snake;
 import javafx.scene.Group;
 import javafx.scene.shape.Circle;
 
-public class SnakeNose extends Group implements Snake {
+public class SnakeableNose extends Group implements Snakeable {
     private Circle nose;
     private Circle noseHole;
     private float size = .3f;
-    public SnakeNose () {
+    public SnakeableNose() {
         initialize();
     }
-    public SnakeNose(Float size){
+    public SnakeableNose(Float size){
         this.size = size;
         initialize();
+    }
+
+    @Override
+    public void rotate(int deg) {
+        nose.setRotate(deg);
     }
 
     private void initialize(){

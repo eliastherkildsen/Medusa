@@ -1,4 +1,6 @@
-package org.apollo.template.model;
+package org.apollo.template.model.Food;
+
+import org.apollo.template.model.Character;
 
 public class Apple extends Food{
 

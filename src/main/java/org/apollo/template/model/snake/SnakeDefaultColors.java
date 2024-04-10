@@ -1,4 +1,4 @@
-package org.apollo.template.model;
+package org.apollo.template.model.snake;
 
 import javafx.scene.paint.Color;
 

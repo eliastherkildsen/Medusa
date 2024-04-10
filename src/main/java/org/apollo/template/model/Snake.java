@@ -1,11 +1,7 @@
 package org.apollo.template.model;
 
-import javafx.animation.RotateTransition;
-import javafx.scene.input.KeyCode;
-import javafx.scene.transform.Rotate;
 import org.apollo.template.DirectionState.Directionable;
 import org.apollo.template.DirectionState.StillDirection;
-import org.apollo.template.DirectionState.UpDirection;
 import org.apollo.template.model.snake.SnakeHead;
 
 
@@ -19,28 +15,27 @@ public class Snake implements Character {
     private double yPos = 200;
     private double movementSpeed = 25;
     private int rotation = 0;
+    private Direction directionNow = Direction.DOWN;
 
     // endregion
-
 
     public Snake() {
         this.setDirectional(new StillDirection(this));
         this.snakeHead = new SnakeHead(directionable.getStateAsDirection());
-        setStartingPos(200,200);
+        setStartingPos(xPos,yPos);
 
     }
 
-    public void setStartingPos(double x, double y){
-        snakeHead.setLayoutX(x);
-        snakeHead.setLayoutY(y);
+    @Override
+    public void update() {
+        updateSnakePosition();
     }
-
 
     public void moveSnake(Direction direction){
         directionable.change(direction);
-
         snakeHead.changeHeadRotation(directionable.getStateAsDirection());
     }
+
     public void updateSnakePosition(){
 
         xPos = snakeHead.getLayoutX();
@@ -54,6 +49,11 @@ public class Snake implements Character {
 
     }
     // region getter & setters
+
+    public void setStartingPos(double x, double y){
+        snakeHead.setLayoutX(x);
+        snakeHead.setLayoutY(y);
+    }
     public void setXVelocity(double xVelocity) {
 
         // resetting the velocity, to make sure that we do not move the snake in 2 directions.
@@ -87,6 +87,10 @@ public class Snake implements Character {
     }
     public double getYPos() {
         return yPos;
+    }
+
+    public Direction getDirectionNow() {
+        return directionNow;
     }
     // endregion
 

@@ -1,4 +1,4 @@
-package org.apollo.template.model;
+package org.apollo.template.model.Food;
 
 public abstract class Food implements Eatable {
     private final int POINT;

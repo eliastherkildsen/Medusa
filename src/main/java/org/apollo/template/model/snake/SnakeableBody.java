@@ -4,14 +4,20 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class SnakeBody extends Group implements Snake {
+public class SnakeableBody extends Group implements Snakeable {
     private Circle body;
     private float size = .3f;
 
-    public SnakeBody(){
+    public SnakeableBody(){
         initialize();
     }
-    public SnakeBody(Float size){
+
+    @Override
+    public void rotate(int deg) {
+        body.setRotate(deg);
+    }
+
+    public SnakeableBody(Float size){
         this.size = size;
         initialize();
     }

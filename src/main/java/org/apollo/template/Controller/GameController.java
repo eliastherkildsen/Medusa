@@ -37,7 +37,7 @@ public class GameController implements Initializable {
     @FXML
     private Pane snakeCanvas;
     @FXML
-    private Label scoreLabel, pausedGameLabel, xPos, yPos;
+    private Label scoreLabel, pausedGameLabel, xPos, yPos, directionLab;
     @FXML
     private VBox vBoxPausedGame;
     @FXML
@@ -93,7 +93,7 @@ public class GameController implements Initializable {
 
         // checks if the snake is on screen
         if (isOnScreen()) {
-            snake.updateSnakePosition();
+            snake.update();
         }
     }
 
@@ -108,6 +108,8 @@ public class GameController implements Initializable {
     private void updateDebugLab() {
         xPos.setText(String.valueOf(snake.getXPos()));
         yPos.setText(String.valueOf(snake.getYPos()));
+        directionLab.setText(String.valueOf(snake.getDirectionNow()));
+
 
 
     }

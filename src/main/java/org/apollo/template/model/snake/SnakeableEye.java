@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 
-public class SnakeEye extends Group implements Snake {
+public class SnakeableEye extends Group implements Snakeable {
 
     private Circle iris;
     private Ellipse pubel;
@@ -13,13 +13,21 @@ public class SnakeEye extends Group implements Snake {
     private Circle eyeAppleBorder;
     private float size = .3f;
 
-    public SnakeEye() {
+    public SnakeableEye() {
         initialize();
     }
 
-    public SnakeEye(float size) {
+    public SnakeableEye(float size) {
         this.size = size;
         initialize();
+    }
+
+    @Override
+    public void rotate(int deg) {
+        iris.setRotate(deg);
+        pubel.setRotate(deg);
+        eyeApple.setRotate(deg);
+        eyeAppleBorder.setRotate(deg);
     }
 
     private void initialize(){
@@ -68,6 +76,8 @@ public class SnakeEye extends Group implements Snake {
 
         eyeAppleBorder.setLayoutX(x);
         eyeAppleBorder.setLayoutY(y);
+
+
 
 
 

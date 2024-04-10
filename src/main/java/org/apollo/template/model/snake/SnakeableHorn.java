@@ -3,18 +3,22 @@ package org.apollo.template.model.snake;
 import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
 
-public class SnakeHorn extends Group implements Snake {
+public class SnakeableHorn extends Group implements Snakeable {
     private Rectangle horn;
     private Rectangle rightHorn;
     private float sizeHeight = .3f;
     private float sizeWidth = .3f;
-    public SnakeHorn() {
+    public SnakeableHorn() {
         initialize();
     }
-    public SnakeHorn(Float height, Float width){
+    public SnakeableHorn(Float height, Float width){
         this.sizeHeight = height;
         this.sizeWidth = width;
         initialize();
+    }
+    @Override
+    public void rotate(int deg) {
+        horn.setRotate(deg);
     }
 
     private void initialize(){
