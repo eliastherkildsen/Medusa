@@ -11,7 +11,7 @@ import org.apollo.template.View.ViewList;
 public class App extends Application {
 
     public static int screenWidth = 600;
-    public static int screenHeight = 400;
+    public static int screenHeight = 600;
     private String screenTitle = "Apollo - JavaFx Template";
     private Image icon = new Image("file:src/main/resources/org/apollo/template/images/TempLogoBG_shadow.png");
     public static Stage stageRoot;
