@@ -39,7 +39,8 @@ public class Snake implements Character {
 
     public void moveSnake(Direction direction){
         directionable.change(direction);
-        directionNow = direction;
+
+        snakeHead.changeHeadRotation(directionable.getStateAsDirection());
     }
     public void updateSnakePosition(){
 
@@ -49,20 +50,10 @@ public class Snake implements Character {
         snakeHead.setLayoutX(xPos += xVelocity);
         snakeHead.setLayoutY(yPos += yVelocity);
 
-        snakeHead.changeHeadRotation(directionNow);
+        //snakeHead.changeHeadRotation(directionNow);
 
 
     }
-    //TODO doesnt work as intended, needs refactor.
-    private void rotateSnake(){
-        Rotate rotate = new Rotate();
-        rotate.setPivotX(snakeHead.getWidth() / 2);
-        rotate.setPivotY(snakeHead.getHeight() / 2);
-
-        rotate.setAngle(rotation);
-        snakeHead.getTransforms().add(rotate);
-    }
-
     // region getter & setters
     public void setXVelocity(double xVelocity) {
 

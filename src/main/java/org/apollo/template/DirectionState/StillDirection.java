@@ -44,4 +44,9 @@ public class StillDirection implements Directionable{
     public String getStateAsString() {
         return "STILL";
     }
+
+    @Override
+    public Direction getStateAsDirection() {
+        return Direction.STILL;
+    }
 }

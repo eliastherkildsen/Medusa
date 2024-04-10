@@ -39,4 +39,9 @@ public class DownDirection implements Directionable{
         return "DOWN";
     }
 
+    @Override
+    public Direction getStateAsDirection() {
+        return Direction.DOWN;
+    }
+
 }

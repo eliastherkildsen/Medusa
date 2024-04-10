@@ -39,4 +39,9 @@ public class LeftDirection implements Directionable{
     public String getStateAsString() {
         return "LEFT";
     }
+
+    @Override
+    public Direction getStateAsDirection() {
+        return Direction.LEFT;
+    }
 }

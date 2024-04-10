@@ -39,4 +39,7 @@ public class UpDirection implements Directionable{
     public String getStateAsString() {
         return "UP";
     }
+    public Direction getStateAsDirection(){
+        return Direction.UP;
+    }
 }

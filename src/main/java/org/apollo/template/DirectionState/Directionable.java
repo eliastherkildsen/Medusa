@@ -7,4 +7,5 @@ import org.apollo.template.model.Snake;
 public interface Directionable {
     void change(Direction direction);
     String getStateAsString();
+    public Direction getStateAsDirection();
 }

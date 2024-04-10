@@ -123,8 +123,6 @@ public class GameController implements Initializable {
     private void loadListener() {
         gameStackPane.setOnKeyPressed(keyEvent -> {
 
-            System.out.println(keyEvent.getCode());
-
             // handles key press escape - paused game
             if (keyEvent.getCode().equals(KeyCode.ESCAPE) || keyEvent.getCode().equals(KeyCode.SPACE)){
 
