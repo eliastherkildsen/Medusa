@@ -19,14 +19,13 @@ public class Snake implements Character {
     private double yPos = 200;
     private double movementSpeed = 25;
     private int rotation = 0;
-    private Direction directionNow = Direction.DOWN;
 
     // endregion
 
 
     public Snake() {
         this.setDirectional(new StillDirection(this));
-        this.snakeHead = new SnakeHead(directionNow);
+        this.snakeHead = new SnakeHead(directionable.getStateAsDirection());
         setStartingPos(200,200);
 
     }
