@@ -29,10 +29,11 @@ public class SnakeHead extends Pane {
      */
     public void changeHeadRotation(Direction direction){
         if (directionNow == direction){
-            DebugMessage.info("[SnakeHead - Rotation]", "No Change to head direction");
+            DebugMessage.info("SnakeHead - changeHeadRotation", "No Change to head direction");
             return;
         }
-        DebugMessage.info("SnakeHead - Rotation","Setting Snake Head direction: " + direction);
+        directionNow = direction;
+        DebugMessage.info("SnakeHead - changeHeadRotation","Setting Snake Head direction: " + direction);
         switch (direction) {
             case UP:
                 noseRight.setLayout(-6, -16);
