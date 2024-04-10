@@ -27,11 +27,9 @@ public class LeftDirection implements Directionable{
     public void change(Direction direction) {
         if (direction.equals(Direction.UP)){
             character.setDirectional(new UpDirection(character));
-            DebugMessage.info(this, "Up direction");
         }
         if (direction.equals(Direction.DOWN)){
             character.setDirectional(new DownDirection(character));
-            DebugMessage.info(this, "Down direction");
         }
     }
 

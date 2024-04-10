@@ -8,7 +8,6 @@ public interface Character extends Updateable {
 
     public void setXVelocity(double xVelocity);
     public void setYVelocity(double yVelocity);
-    public void setRotation(int rotation);
     public double getMovementSpeed();
 
     @Override

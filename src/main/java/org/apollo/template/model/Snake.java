@@ -14,8 +14,6 @@ public class Snake implements Character {
     private double xPos = 200;
     private double yPos = 200;
     private double movementSpeed = 25;
-    private int rotation = 0;
-    private Direction directionNow = Direction.DOWN;
 
     // endregion
 
@@ -66,10 +64,6 @@ public class Snake implements Character {
         this.yVelocity = yVelocity;
     }
 
-    public void setRotation(int rotation) {
-        this.rotation = rotation;
-    }
-
     public double getMovementSpeed() {
         return movementSpeed;
     }
@@ -89,8 +83,8 @@ public class Snake implements Character {
         return yPos;
     }
 
-    public Direction getDirectionNow() {
-        return directionNow;
+    public Direction getDirection() {
+        return directionable.getStateAsDirection();
     }
     // endregion
 

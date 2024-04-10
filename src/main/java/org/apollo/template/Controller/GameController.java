@@ -108,7 +108,7 @@ public class GameController implements Initializable {
     private void updateDebugLab() {
         xPos.setText(String.valueOf(snake.getXPos()));
         yPos.setText(String.valueOf(snake.getYPos()));
-        directionLab.setText(String.valueOf(snake.getDirectionNow()));
+        directionLab.setText(String.valueOf(snake.getDirection()));
 
 
 
@@ -128,16 +128,12 @@ public class GameController implements Initializable {
             // handles key press escape - paused game
             if (keyEvent.getCode().equals(KeyCode.ESCAPE) || keyEvent.getCode().equals(KeyCode.SPACE)){
 
-                DebugMessage.info("GameController - LoadListener","Escape key pressed");
-
                 if (!pausedState) {
                     vBoxPausedGame.setVisible(true);
-                    DebugMessage.info("GameController - LoadListener", "Game paused");
                 }
 
                 if (pausedState){
                     vBoxPausedGame.setVisible(false);
-                    DebugMessage.info("GameController - LoadListener", "Game resumed");
                 }
 
                 toggleEscState();
@@ -145,19 +141,15 @@ public class GameController implements Initializable {
             }
             // handles key press directions - up, down, left, right
             if (keyEvent.getCode().equals(KeyCode.UP) || keyEvent.getCode().equals(KeyCode.W)){
-                DebugMessage.info("GameController - LoadListener","Up key pressed");
                 snake.moveSnake(Direction.UP);
             }
             if (keyEvent.getCode().equals(KeyCode.DOWN) || keyEvent.getCode().equals(KeyCode.S)){
-                DebugMessage.info("GameController - LoadListener","Down key pressed");
                 snake.moveSnake(Direction.DOWN);
             }
             if (keyEvent.getCode().equals(KeyCode.LEFT) || keyEvent.getCode().equals(KeyCode.A)){
-                DebugMessage.info("GameController - LoadListener","Left key pressed");
                 snake.moveSnake(Direction.LEFT);
             }
             if (keyEvent.getCode().equals(KeyCode.RIGHT) || keyEvent.getCode().equals(KeyCode.D)){
-                DebugMessage.info("GameController - LoadListener","Right key pressed");
                 snake.moveSnake(Direction.RIGHT);
             }
         });

@@ -26,11 +26,9 @@ public class UpDirection implements Directionable{
     public void change(Direction direction) {
         if (direction.equals(Direction.LEFT)){
             character.setDirectional(new LeftDirection(character));
-            DebugMessage.info(this, "Left direction");
         }
         if (direction.equals(Direction.RIGHT)){
             character.setDirectional(new RightDirection(character));
-            DebugMessage.info(this, "Right direction");
         }
     }
 
