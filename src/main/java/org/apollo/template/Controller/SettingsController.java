@@ -20,9 +20,10 @@ import java.util.ResourceBundle;
 public class SettingsController implements Initializable {
     public static SettingsController instance;
     @FXML
-    private Slider SoundEffectSlider, musicSlider;
+    private Slider soundEffectSlider, musicSlider;
     private MediaPlayer musicMediaPlayer, soundEffectPlayer;
     private final Media MAIN_MUSIC_TRACK = new Media(new File("src/main/resources/org/apollo/template/audio/TetrisSoundTrack.mp3").toURI().toString());
+    private Media eatingSound = new Media((new File("src/main/resources/org/apollo/template/audio/carrotnom-92106.mp3").toURI().toString()));
     private double musicSliderVolume = .5;
     private double soundEffectSliderVolume = .5;
 
@@ -35,33 +36,50 @@ public class SettingsController implements Initializable {
         musicMediaPlayer.setAutoPlay(true);
         musicMediaPlayer.play();
 
+        // setting up the sound effects
+        soundEffectPlayer = new MediaPlayer(eatingSound);
+        soundEffectPlayer.setVolume(soundEffectSliderVolume);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        musicSlider.setValue(musicSliderVolume);
 
+        // updates the volume of musicMediaPlayer based on the value of music slider
+        musicMediaPlayer.volumeProperty().bind(musicSlider.valueProperty());
+
+        // updates the volume of sound effect based on the value of sound effect slider
+        soundEffectPlayer.volumeProperty().bind(soundEffectSlider.valueProperty());
     }
+
     @FXML
     protected void onBtnMainMenu(){
         MainController.getInstance().changeView(ViewList.MENU, BorderPaneRegion.CENTER);
     }
+
+
     @FXML
     protected void onBtnApply(){
-        musicSliderVolume = musicSlider.valueProperty().getValue();
-        System.out.println(musicSliderVolume);
-        musicMediaPlayer.setVolume(musicSliderVolume);
 
         MainController.getInstance().addAlert(new AlertComp(AlertType.SUCCESS, "Settings has been updated!"));
 
         MainController.getInstance().changeView(ViewList.MENU, BorderPaneRegion.CENTER);
     }
+
+
     @FXML
     protected void onBtnMusicMute(){
         musicSliderVolume = 0;
         musicSlider.setValue(0);
         musicMediaPlayer.setVolume(0);
     }
+
+    @FXML
+    protected void onButtonSoundEffectMute(){
+        soundEffectSliderVolume = 0;
+        soundEffectSlider.setValue(0);
+        soundEffectPlayer.setVolume(0);
+    }
+
 
     public static SettingsController getInstance(){
         if (instance ==  null){

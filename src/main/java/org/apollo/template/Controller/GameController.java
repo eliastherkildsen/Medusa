@@ -22,6 +22,7 @@ import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
 import org.apollo.template.model.Direction;
 import org.apollo.template.model.Food.Apple;
+import org.apollo.template.model.Food.Banana;
 import org.apollo.template.model.Food.Food;
 import org.apollo.template.model.Map;
 import org.apollo.template.model.Snake;
@@ -219,6 +220,9 @@ public class GameController implements Initializable, Updateable {
 
             if (keyEvent.getCode().equals(KeyCode.Q)){
                 foodList.add(new Apple(125, 125));
+
+                foodList.add(new Banana(325,325));
+
             }
 
 
@@ -287,4 +291,8 @@ public class GameController implements Initializable, Updateable {
     }
 
     // endregion
+
+
+
+
 }

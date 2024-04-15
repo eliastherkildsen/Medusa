@@ -3,12 +3,10 @@
     -fx-background-radius: 25;
     -fx-max-height: 55;
     -fx-max-width: 320;
-
-
+    -fx-opacity: 0.4;
 }
 
-.button {
-}
+
 
 
 
