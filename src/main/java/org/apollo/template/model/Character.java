@@ -13,6 +13,7 @@ public interface Character extends Updateable {
     public int getPoint();
     public void addBodyPart();
     public void removeBodyPart();
+    public void setMovementSpeed(double speed);
 
     @Override
     public void update();

@@ -15,6 +15,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import org.apollo.template.App;
 import org.apollo.template.DirectionState.*;
 import org.apollo.template.Service.Debugger.DebugMessage;
@@ -22,15 +23,19 @@ import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
 import org.apollo.template.model.Direction;
 import org.apollo.template.model.Food.Apple;
+import org.apollo.template.model.Food.Banana;
+import org.apollo.template.model.Food.Chilli;
 import org.apollo.template.model.Food.Food;
 import org.apollo.template.model.Map;
 import org.apollo.template.model.Snake;
 import org.apollo.template.model.Updateable;
 import org.apollo.template.model.snake.SnakeBodyPart;
+import org.apollo.template.model.snake.gameState;
 
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable, Updateable {
@@ -52,13 +57,20 @@ public class GameController implements Initializable, Updateable {
     @FXML
     private Button btnResume, btnMainMenu, btnExit;
     private boolean pausedState = false;
-    private Map map = new Map();
+    private Map map;
 
-    private Snake snake = new Snake();
+    private Snake snake;
     private Timeline gameLoop;
-    private final javafx.util.Duration GAME_TICK = javafx.util.Duration.millis(200); // Adjust tick duration as needed
+    private final javafx.util.Duration GAME_TICK = javafx.util.Duration.millis(100); // Adjust tick duration as needed
     private List<Food> foodList;
+    private int interval = gameState.interval;
+    private int cnt;
+    private final int MAX_APPLE = 1;
 
+    public GameController() {
+        this.snake = new Snake();
+        this.map = new Map();
+    }
 
 
     // endregion
@@ -103,36 +115,94 @@ public class GameController implements Initializable, Updateable {
     @Override
     public void update() {
 
+        cnt ++;
+
         // checks if the game is paused
         if (pausedState) return;
 
         // updating score.
         scoreLabel.setText(String.valueOf("SCORE: " + snake.getPoint()));
 
-        // checks if the snake is on screen
-        if (isOnScreen() && !snake.isDead()) {
+        // checks if the snake is on screen and alive.
+        if (isOnScreen() && !snake.isDead() && (cnt % interval == 0)) {
+
             // check collision with food
-            checkCollisionFood();
+            checkCollisionWithFood();
+
             // updating debug information.
-            updateDebugLab();
+            renderDebugLayer();
+
             // rendering all grapes
             render();
 
+            // updating the snakes position.
             snake.update();
 
+            // spawning food.
+            spawnFood();
+
         }
+    }
+
+    private void spawnFood() {
+
+        int foodCount = foodList.size();
+
+        if (foodCount < MAX_APPLE){
+
+            Random random = new Random();
+
+            int xLen = map.getSquares().length;
+            int randomXIndex = random.nextInt(0, xLen);
+
+            int randomYIndex = random.nextInt(0, map.getSquares()[randomXIndex].length);
+
+            Rectangle[][] squares = map.getSquares();
+            Rectangle rectangle = map.getSquares()[randomXIndex][randomYIndex];
+            int foodX = (int) rectangle.getX();
+            int foodY = (int) rectangle.getY();
+
+            int offset = 25;
+
+            foodX += offset;
+            foodY += offset;
+
+            if (random.nextBoolean()){
+                foodList.add(new Chilli(foodX, foodY));
+            }
+            else {
+                foodList.add(new Chilli(foodX, foodY));
+            }
+
+
+        }
+
     }
 
     /**
      * Method checks if the snake has collided with any of the food.
      */
-    private void checkCollisionFood() {
+    private void checkCollisionWithFood() {
+
         for (Food food : foodList){
-            if(food.isColided(snake.getXPos(), snake.getYPos())){
+
+            food.update();
+
+            // checks if the player has colided with the food.
+            if(food.isColided(snake.getSnakeHead())){
                 food.eat(snake);
                 foodList.remove(food);
                 eatableLayer.getChildren().remove(food);
             }
+
+            // checks if the food is alive.
+            if (!food.isAlive()){
+                foodList.remove(food);
+                eatableLayer.getChildren().remove(food);
+            }
+
+
+
         }
 
     }
@@ -168,7 +238,7 @@ public class GameController implements Initializable, Updateable {
         return true;
     }
 
-    private void updateDebugLab() {
+    private void renderDebugLayer() {
         xPos.setText(String.valueOf(snake.getXPos()));
         yPos.setText(String.valueOf(snake.getYPos()));
         directionLab.setText(String.valueOf(snake.getDirection()));
@@ -281,10 +351,14 @@ public class GameController implements Initializable, Updateable {
         System.exit(0);
     }
 
-    @FXML
-    protected void btnADD(){
-        snake.addBodyPart();
+    public int getInterval() {
+        return interval;
     }
+
+    public void setInterval(int interval) {
+        this.interval = interval;
+    }
+
 
     // endregion
 }

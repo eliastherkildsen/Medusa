@@ -7,10 +7,8 @@ public class Apple extends Food{
 
     public Apple(double x, double y) {
 
-        super(20, x, y);
+        super(1, x, y);
         super.setFill(Color.RED);
-        super.setScaleX(20);
-        super.setScaleY(20);
 
     }
 
