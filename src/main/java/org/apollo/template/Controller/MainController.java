@@ -33,7 +33,7 @@ public class MainController implements Initializable, Alertable<VBox> {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        changeView(ViewList.MENU, BorderPaneRegion.CENTER);
+        changeView(ViewList.GAMEOVER, BorderPaneRegion.CENTER);
 
     }
 
