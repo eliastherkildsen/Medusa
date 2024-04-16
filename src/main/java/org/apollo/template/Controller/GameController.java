@@ -222,6 +222,9 @@ public class GameController implements Initializable, Updateable {
             }
 
 
+            if ((keyEvent.getCode().equals(KeyCode.G))){
+                MainController.getInstance().changeView(ViewList.GAMEOVER,BorderPaneRegion.CENTER);
+            }
 
 
         });

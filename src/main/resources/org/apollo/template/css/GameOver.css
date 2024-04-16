@@ -1,3 +1,24 @@
-#labelGameOver {
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+.button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+
+    -fx-font-size: 14px;
+    -fx-text-fill: Grey;
+
+    -fx-border-color: grey;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-insets: 0px 10px 0px 10px;
+
+    -fx-padding: 8px 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 0);
+    -fx-transition: background-color 0.3s, -fx-border-color 0.3s, -fx-text-fill 0.3s;
+
+}
+
+.button:hover {
+    -fx-border-width: 0px 0px 3px 0px;
+
+    -fx-text-fill: grey;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
 }
