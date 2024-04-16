@@ -68,6 +68,7 @@ public class SettingsController implements Initializable {
 
         // updates the volume of sound effect based on the value of sound effect slider
         soundEffectPlayer.volumeProperty().bind(soundEffectSlider.valueProperty());
+
     }
 
     @FXML
