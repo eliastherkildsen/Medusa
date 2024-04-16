@@ -34,6 +34,7 @@ public class GameOverController implements Initializable {
 
 
     public void onScoreBoard(){
+        settingsController.setMusicRate(1.0);
         MainController.getInstance().changeView(ViewList.SCOREBOARD, BorderPaneRegion.CENTER);
     }
 
