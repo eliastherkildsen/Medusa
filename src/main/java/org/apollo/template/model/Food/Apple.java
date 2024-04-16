@@ -11,6 +11,7 @@ public class Apple extends Food{
         super.setFill(Color.RED);
         super.setScaleX(20);
         super.setScaleY(20);
+        super.setSoundEffect(SoundEffect.EATING);
 
     }
 

@@ -10,6 +10,7 @@ import org.apollo.template.Service.Alert.AlertComp;
 import org.apollo.template.Service.Alert.AlertType;
 import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
+import org.apollo.template.model.Food.SoundEffect;
 
 import java.io.File;
 import java.net.URL;
@@ -24,6 +25,7 @@ public class SettingsController implements Initializable {
     private MediaPlayer musicMediaPlayer, soundEffectPlayer;
     private final Media MAIN_MUSIC_TRACK = new Media(new File("src/main/resources/org/apollo/template/audio/TetrisSoundTrack.mp3").toURI().toString());
     private Media eatingSound = new Media((new File("src/main/resources/org/apollo/template/audio/carrotnom-92106.mp3").toURI().toString()));
+    private Media chiliClaus = new Media(new File("src/main/resources/org/apollo/template/audio/Chilli.mp3").toURI().toString());
     private double musicSliderVolume = .5;
     private double soundEffectSliderVolume = .5;
 
@@ -36,9 +38,11 @@ public class SettingsController implements Initializable {
         musicMediaPlayer.setAutoPlay(true);
         musicMediaPlayer.play();
 
+
         // setting up the sound effects
         soundEffectPlayer = new MediaPlayer(eatingSound);
         soundEffectPlayer.setVolume(soundEffectSliderVolume);
+
     }
 
     @Override
@@ -78,6 +82,14 @@ public class SettingsController implements Initializable {
         soundEffectSliderVolume = 0;
         soundEffectSlider.setValue(0);
         soundEffectPlayer.setVolume(0);
+    }
+
+    public void useSoundEffect(SoundEffect soundEffect){
+
+        Media media = new Media(new File(String.valueOf(soundEffect)).toURI().toString());
+
+        soundEffectPlayer = new MediaPlayer(media);
+        soundEffectPlayer.play();
     }
 
 

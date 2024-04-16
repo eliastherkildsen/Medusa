@@ -17,12 +17,26 @@ public enum ViewList {
      * Menu view.
      */
     MENU("MenuView.fxml", new MenuController()),
+
+    /**
+     * Game view
+     */
     GAME("GameView.fxml", new GameController()),
 
+    /**
+     * Setting view
+     */
     SETTINGS("SettingsView.fxml", SettingsController.getInstance()),
 
+
+    /**
+     * Registration view
+     */
     REGISTRATION("RegistrationView.fxml", new RegistrationController()),
 
+    /**
+     * Scoreboard view
+     */
     SCOREBOARD("ScoreView.fxml", ScoreController.getInstance());
 
     private final String FXML_FILE_NAME; // FXML file name of the view

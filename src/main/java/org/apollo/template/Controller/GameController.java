@@ -60,6 +60,7 @@ public class GameController implements Initializable, Updateable {
     private final javafx.util.Duration GAME_TICK = javafx.util.Duration.millis(200); // Adjust tick duration as needed
     private List<Food> foodList;
 
+    private SettingsController settingsController;
 
 
     // endregion
@@ -130,6 +131,9 @@ public class GameController implements Initializable, Updateable {
     private void checkCollisionFood() {
         for (Food food : foodList){
             if(food.isColided(snake.getXPos(), snake.getYPos())){
+
+                settingsController.useSoundEffect(food.getSoundEffect());
+
                 food.eat(snake);
                 foodList.remove(food);
                 eatableLayer.getChildren().remove(food);

@@ -18,6 +18,7 @@ public class Banana extends Food{
         super(10, x, y);
         super.setScaleX(20);
         super.setScaleY(20);
+        super.setSoundEffect(SoundEffect.EATING);
     }
 
 

@@ -7,6 +7,7 @@ import javafx.scene.shape.Rectangle;
 public abstract class Food extends Rectangle implements Eatable  {
     private final int POINT;
     private final double X_POS, Y_POS;
+    private SoundEffect soundEffect;
 
 
 
@@ -22,6 +23,14 @@ public abstract class Food extends Rectangle implements Eatable  {
         this.setWidth(2);
     }
 
+
+    public void setSoundEffect(SoundEffect soundEffect) {
+        this.soundEffect = soundEffect;
+    }
+
+    public SoundEffect getSoundEffect() {
+        return soundEffect;
+    }
 
     public int getPOINT() {
         return POINT;
