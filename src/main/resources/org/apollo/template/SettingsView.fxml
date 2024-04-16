@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <StackPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -13,55 +14,84 @@
          </image></ImageView>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label text="Sound Effect" />
-            <HBox alignment="TOP_CENTER" maxHeight="50.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#onButtonSoundEffectMute" prefHeight="6.0" prefWidth="56.0" stylesheets="@css/HighScore.css" />
-                  <ImageView fitHeight="26.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/volume-2.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="117.0" layoutY="10.0" mnemonicParsing="false" text="-" />
-                  <Slider fx:id="soundEffectSlider" prefHeight="26.0" prefWidth="172.0" value="50.0">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin></Slider>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="57.0" text="+" />
-               </children>
-               <VBox.margin>
-                  <Insets right="85.0" />
-               </VBox.margin>
-            </HBox>
-            <Label layoutX="293.0" layoutY="35.0" text="Music" />
+            <Label layoutX="293.0" layoutY="35.0" text="MUSIC">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
             <HBox alignment="TOP_CENTER" layoutX="110.0" layoutY="52.0" maxHeight="50.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onBtnMusicMute" stylesheets="@css/HighScore.css" />
-                  <ImageView fitHeight="26.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/volume-2.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="117.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="29.0" text="-" />
-                  <Slider fx:id="musicSlider" blockIncrement="0.1" max="1.0" prefHeight="26.0" prefWidth="151.0" value="0.5" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="30.0" text="+" />
+                  <Button fx:id="btnMusic" mnemonicParsing="false" onAction="#onBtnMusicMute" stylesheets="@css/Setting.css">
+                     <graphic>
+                        <ImageView fx:id="btnMusicImage" fitHeight="35.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/volume-2.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Slider fx:id="musicSlider" blockIncrement="0.1" max="1.0" prefHeight="31.0" prefWidth="309.0" value="0.5">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></Slider>
                </children>
                <VBox.margin>
-                  <Insets right="85.0" />
+                  <Insets right="50.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <Label text="SOUND EFFECT">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets top="30.0" />
+               </padding></Label>
+            <HBox alignment="TOP_CENTER" maxHeight="50.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#onBtnApply" prefHeight="30.0" prefWidth="100.0" text="Apply" />
-                  <Button layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#onBtnMainMenu" prefHeight="30.0" prefWidth="100.0" text="Main menu" />
+                  <Button fx:id="btnSound" mnemonicParsing="false" onAction="#onButtonSoundEffectMute" prefHeight="82.0" prefWidth="51.0" stylesheets="@css/Setting.css">
+                     <graphic>
+                        <ImageView fx:id="btnSoundImage" fitHeight="35.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/volume-2.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Slider fx:id="soundEffectSlider" prefHeight="31.0" prefWidth="293.0" value="50.0">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Slider>
                </children>
+               <VBox.margin>
+                  <Insets right="50.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="124.0" prefWidth="400.0" spacing="30.0" stylesheets="@css/Setting%232.css">
+               <children>
+                  <Button layoutX="10.0" layoutY="10.0" maxHeight="50.0" maxWidth="170.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#onBtnMainMenu" prefHeight="78.0" prefWidth="150.0" stylesheets="@css/Menu.css" text="Main menu" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets top="40.0" />
+               </padding>
             </HBox>
          </children>
          <padding>
             <Insets left="100.0" right="100.0" />
          </padding>
          <StackPane.margin>
-            <Insets top="100.0" />
+            <Insets top="60.0" />
          </StackPane.margin>
       </VBox>
          </children>

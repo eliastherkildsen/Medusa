@@ -2,7 +2,10 @@ package org.apollo.template.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import org.apollo.template.Service.Alert.Alert;
@@ -22,12 +25,23 @@ public class SettingsController implements Initializable {
     public static SettingsController instance;
     @FXML
     private Slider soundEffectSlider, musicSlider;
+    @FXML
+    private Button btnMusic, btnSound;
+    @FXML
+    private ImageView btnMusicImage, btnSoundImage;
+
+    private final String volumeImageURL = "file:src/main/resources/org/apollo/template/images/volume-2.png";
+    private final String muteImageURL = "file:src/main/resources/org/apollo/template/images/volume-x.png";
+
     private MediaPlayer musicMediaPlayer, soundEffectPlayer;
     private final Media MAIN_MUSIC_TRACK = new Media(new File("src/main/resources/org/apollo/template/audio/TetrisSoundTrack.mp3").toURI().toString());
     private Media eatingSound = new Media((new File("src/main/resources/org/apollo/template/audio/carrotnom-92106.mp3").toURI().toString()));
-    private Media chiliClaus = new Media(new File("src/main/resources/org/apollo/template/audio/Chilli.mp3").toURI().toString());
     private double musicSliderVolume = .5;
     private double soundEffectSliderVolume = .5;
+    private boolean setMusicMute = true;
+    private boolean setSoundMute = true;
+    private double lastMusicVal;
+    private double lastSoundVal;
 
 
     private SettingsController(){
@@ -62,26 +76,58 @@ public class SettingsController implements Initializable {
 
 
     @FXML
-    protected void onBtnApply(){
+    protected void onBtnMusicMute(){
 
-        MainController.getInstance().addAlert(new AlertComp(AlertType.SUCCESS, "Settings has been updated!"));
+        if (setMusicMute){
+            lastMusicVal = musicSlider.getValue();
+            musicSlider.setValue(0);
 
-        MainController.getInstance().changeView(ViewList.MENU, BorderPaneRegion.CENTER);
+            updateMusicMuteImage(muteImageURL);
+        }
+        else {
+            musicSlider.setValue(lastMusicVal);
+            updateMusicMuteImage(volumeImageURL);
+        }
+
+        toggleMusicMuteState();
     }
 
 
-    @FXML
-    protected void onBtnMusicMute(){
-        musicSliderVolume = 0;
-        musicSlider.setValue(0);
-        musicMediaPlayer.setVolume(0);
+
+    private void updateMusicMuteImage(String imageURL) {
+        Image image = new Image(imageURL);
+        btnMusicImage.setImage(image);
+    }
+
+
+    private void toggleMusicMuteState() {
+        setMusicMute = !setMusicMute;
     }
 
     @FXML
     protected void onButtonSoundEffectMute(){
-        soundEffectSliderVolume = 0;
-        soundEffectSlider.setValue(0);
-        soundEffectPlayer.setVolume(0);
+        if (setSoundMute){
+            lastSoundVal = soundEffectSlider.getValue();
+            soundEffectSlider.setValue(0);
+
+            updateSoundMuteImage(muteImageURL);
+        }
+        else {
+            soundEffectSlider.setValue(lastSoundVal);
+            updateSoundMuteImage(volumeImageURL);
+        }
+
+        toggleSoundMuteState();
+
+    }
+
+    private void toggleSoundMuteState() {
+        setSoundMute = !setSoundMute;
+    }
+
+    private void updateSoundMuteImage(String imageURL) {
+        Image image = new Image(imageURL);
+        btnSoundImage.setImage(image);
     }
 
     public void useSoundEffect(SoundEffect soundEffect){
