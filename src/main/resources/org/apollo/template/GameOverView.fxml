@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="421.0" fitWidth="608.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/istockphoto-1419046670-612x612.jpg" />
+         </image></ImageView>
+      <VBox alignment="TOP_CENTER" prefHeight="472.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="labelGameOver" text="GAME OVER" textFill="#731111">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="48.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="96.0" />
+               </VBox.margin></Label>
+            <Label fx:id="labelScore">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" stylesheets="@css/GameOver.css">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onScoreBoard" text="SCOREBOARD" />
+                  <Button mnemonicParsing="false" onAction="#onMainMenu" text="MAIN MENU" />
+               </children>
+               <VBox.margin>
+                  <Insets top="150.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

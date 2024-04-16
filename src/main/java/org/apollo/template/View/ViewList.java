@@ -1,6 +1,7 @@
 package org.apollo.template.View;
 
 import org.apollo.template.Controller.*;
+import org.apollo.template.model.Character;
 
 /**
  * Enum representing different views in the application.
@@ -28,7 +29,6 @@ public enum ViewList {
      */
     SETTINGS("SettingsView.fxml", SettingsController.getInstance()),
 
-
     /**
      * Registration view
      */
@@ -37,7 +37,12 @@ public enum ViewList {
     /**
      * Scoreboard view
      */
-    SCOREBOARD("ScoreView.fxml", ScoreController.getInstance());
+    SCOREBOARD("ScoreView.fxml", ScoreController.getInstance()),
+
+    /**
+     * Gameover view
+     */
+    GAMEOVER("GameOverView.fxml", new GameOverController());
 
     private final String FXML_FILE_NAME; // FXML file name of the view
     private final Object CONTROLLER; // Controller associated with the view

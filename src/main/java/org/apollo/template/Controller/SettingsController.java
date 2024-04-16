@@ -44,6 +44,7 @@ public class SettingsController implements Initializable {
     private double lastSoundVal;
 
 
+
     private SettingsController(){
 
         // setting up the music
@@ -132,10 +133,15 @@ public class SettingsController implements Initializable {
 
     public void useSoundEffect(SoundEffect soundEffect){
 
-        Media media = new Media(new File(String.valueOf(soundEffect)).toURI().toString());
+        String filepath = String.format("file:%s",soundEffect);
+        Media media = new Media(new File(filepath).toURI().toString());
 
         soundEffectPlayer = new MediaPlayer(media);
         soundEffectPlayer.play();
+    }
+
+    public void setMusicRate(Double rate){
+        musicMediaPlayer.setRate(rate);
     }
 
 
