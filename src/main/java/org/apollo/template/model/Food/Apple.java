@@ -12,7 +12,6 @@ public class Apple extends Food{
         super.setScaleX(20);
         super.setScaleY(20);
         super.setSoundEffect(SoundEffect.EATING);
-
     }
 
     @Override

@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
-import org.apollo.template.model.Character;
 import org.apollo.template.model.Snake;
 
 import java.net.URL;
@@ -14,22 +13,23 @@ import java.util.ResourceBundle;
 public class GameOverController implements Initializable {
 
     @FXML
-    private Label labelGameOver;
+    private Label labelGameOver, labelScore;
 
     private Snake snake = new Snake();
 
-    private SettingsController settingsController;
+    private SettingsController settingsController = SettingsController.getInstance();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        settingsController
+        settingsController.setMusicRate(0.2);
         updateScore();
-
     }
 
+
     private void updateScore() {
-        labelGameOver.setText(String.format("SCORE: %d",snake.getPoint()));
+        labelScore.setText(String.format("SCORE: %d",snake.getPoint()));
     }
 
 
@@ -38,6 +38,7 @@ public class GameOverController implements Initializable {
     }
 
     public void onMainMenu(){
+        settingsController.setMusicRate(1.0);
         MainController.getInstance().changeView(ViewList.MENU,BorderPaneRegion.CENTER);
     }
 

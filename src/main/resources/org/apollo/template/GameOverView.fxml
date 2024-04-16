@@ -21,7 +21,7 @@
                <VBox.margin>
                   <Insets top="96.0" />
                </VBox.margin></Label>
-            <Label text="SCORE: 123">
+            <Label fx:id="labelScore">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
