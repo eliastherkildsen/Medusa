@@ -1,10 +1,15 @@
 package org.apollo.template.model.Food;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
 public abstract class Food extends Rectangle implements Eatable  {
     private final int POINT;
     private final double X_POS, Y_POS;
+    private SoundEffect soundEffect;
+
+
 
 
     protected Food(int point, double xPos, double yPos) {
@@ -16,8 +21,15 @@ public abstract class Food extends Rectangle implements Eatable  {
         this.setLayoutY(Y_POS);
         this.setHeight(2);
         this.setWidth(2);
+    }
 
 
+    public void setSoundEffect(SoundEffect soundEffect) {
+        this.soundEffect = soundEffect;
+    }
+
+    public SoundEffect getSoundEffect() {
+        return soundEffect;
     }
 
     public int getPOINT() {

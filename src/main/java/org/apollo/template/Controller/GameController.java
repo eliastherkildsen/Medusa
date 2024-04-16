@@ -22,6 +22,7 @@ import org.apollo.template.View.BorderPaneRegion;
 import org.apollo.template.View.ViewList;
 import org.apollo.template.model.Direction;
 import org.apollo.template.model.Food.Apple;
+import org.apollo.template.model.Food.Banana;
 import org.apollo.template.model.Food.Food;
 import org.apollo.template.model.Map;
 import org.apollo.template.model.Snake;
@@ -59,6 +60,7 @@ public class GameController implements Initializable, Updateable {
     private final javafx.util.Duration GAME_TICK = javafx.util.Duration.millis(200); // Adjust tick duration as needed
     private List<Food> foodList;
 
+    private SettingsController settingsController;
 
 
     // endregion
@@ -129,6 +131,9 @@ public class GameController implements Initializable, Updateable {
     private void checkCollisionFood() {
         for (Food food : foodList){
             if(food.isColided(snake.getXPos(), snake.getYPos())){
+
+                settingsController.useSoundEffect(food.getSoundEffect());
+
                 food.eat(snake);
                 foodList.remove(food);
                 eatableLayer.getChildren().remove(food);
@@ -219,6 +224,9 @@ public class GameController implements Initializable, Updateable {
 
             if (keyEvent.getCode().equals(KeyCode.Q)){
                 foodList.add(new Apple(125, 125));
+
+                foodList.add(new Banana(325,325));
+
             }
 
 
@@ -290,4 +298,8 @@ public class GameController implements Initializable, Updateable {
     }
 
     // endregion
+
+
+
+
 }
