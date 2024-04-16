@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
             <ImageView fitHeight="411.0" fitWidth="612.0" pickOnBounds="true">
          <image>
@@ -77,7 +82,10 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="124.0" prefWidth="400.0" spacing="30.0" stylesheets="@css/Setting%232.css">
                <children>
-                  <Button layoutX="10.0" layoutY="10.0" maxHeight="50.0" maxWidth="170.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#onBtnMainMenu" prefHeight="78.0" prefWidth="150.0" stylesheets="@css/Menu.css" text="Main menu" />
+                  <Button layoutX="10.0" layoutY="10.0" maxHeight="50.0" maxWidth="200.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" onAction="#onBtnMainMenu" prefHeight="49.0" prefWidth="177.0" stylesheets="@css/Menu.css" text="Main menu">
+                     <HBox.margin>
+                        <Insets bottom="35.0" />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
                   <Insets />
