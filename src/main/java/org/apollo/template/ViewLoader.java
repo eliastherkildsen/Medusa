@@ -18,7 +18,10 @@ public class ViewLoader {
     public static javafx.scene.Node loadView(ViewList fxmlFileName) {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setController(fxmlFileName.getController()); // Fetches controller
+
+        if (fxmlFileName.getController() != null) {
+            loader.setController(fxmlFileName.getController()); // Fetches controller
+        }
         loader.setLocation(ViewLoader.class.getResource(fxmlFileName.getFxmlFileName())); // Fetches FXML file
 
 

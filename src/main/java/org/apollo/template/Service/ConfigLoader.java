@@ -41,6 +41,7 @@ public class ConfigLoader {
     }
 
     public int getDebug(){
+
         return this.DEBUG;
     }
 

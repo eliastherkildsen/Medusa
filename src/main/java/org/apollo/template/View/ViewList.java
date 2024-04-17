@@ -17,14 +17,16 @@ public enum ViewList {
      * Menu view.
      */
     MENU("MenuView.fxml", new MenuController()),
-    GAME("GameView.fxml", new GameController()),
+    GAME("GameView.fxml"),
 
     SETTINGS("SettingsView.fxml", SettingsController.getInstance()),
 
-    REGISTRATION("RegistrationView.fxml", new RegistrationController());
+    REGISTRATION("RegistrationView.fxml", new RegistrationController()),
+
+    SCOREBOARD("ScoreView.fxml", ScoreController.getInstance());
 
     private final String FXML_FILE_NAME; // FXML file name of the view
-    private final Object CONTROLLER; // Controller associated with the view
+    private Object CONTROLLER; // Controller associated with the view
 
     /**
      * Constructs a ViewList enum value with the specified FXML file name and controller.
@@ -35,6 +37,10 @@ public enum ViewList {
     ViewList(String fxmlFileName, Object controller) {
         this.FXML_FILE_NAME = fxmlFileName;
         this.CONTROLLER = controller;
+    }
+
+    ViewList(String fxmlFileName) {
+        this.FXML_FILE_NAME = fxmlFileName;
     }
 
     /**
