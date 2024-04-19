@@ -47,7 +47,7 @@ public class Snake implements Character {
     public void update() {
         updateBodyPartPosition();
         updateSnakePosition();
-        dead = checkBodyPartColission();
+        setDead(checkBodyPartColission());
 
     }
 
@@ -135,6 +135,11 @@ public class Snake implements Character {
             bodypart.setColor(color);
         }
     }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
     public double getMovementSpeed() {
         return movementSpeed;
     }

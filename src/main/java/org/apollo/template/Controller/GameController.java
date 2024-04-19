@@ -117,6 +117,7 @@ public class GameController implements Initializable, Updateable {
     public void update() {
 
         cnt ++;
+        if (!isOnScreen())snake.setDead(true);
 
         // checks if the game is paused
         if (pausedState) return;
@@ -125,7 +126,7 @@ public class GameController implements Initializable, Updateable {
         scoreLabel.setText(String.valueOf("SCORE: " + snake.getPoint()));
 
         // checks if the snake is on screen and alive.
-        if (isOnScreen() && !snake.isDead() && (cnt % interval == 0)) {
+        if (!snake.isDead() && (cnt % interval == 0)) {
 
             // check collision with food
             checkCollisionWithFood();
@@ -142,8 +143,9 @@ public class GameController implements Initializable, Updateable {
             // spawning food.
             spawnFood();
 
-        } else {
+        } else if (snake.isDead()) {
             MainController.getInstance().changeView(ViewList.GAMEOVER, BorderPaneRegion.CENTER);
+            gameLoop.stop();
         }
     }
 
@@ -193,8 +195,8 @@ public class GameController implements Initializable, Updateable {
 
             // checks if the player has colided with the food.
             if(food.isColided(snake.getSnakeHead())){
+                //TODO Sound softlocks game?
                 //settingsController.useSoundEffect(food.getSoundEffect());
-
                 food.eat(snake);
                 foodList.remove(food);
                 eatableLayer.getChildren().remove(food);
@@ -237,8 +239,12 @@ public class GameController implements Initializable, Updateable {
 
     private boolean isOnScreen(){
 
-        if (snake.getXPos() <= 0 || snake.getXPos() >= snakeCanvas.getWidth()) return false;
-        if (snake.getYPos() <= 0 || snake.getYPos() >= snakeCanvas.getWidth()) return false;
+        if (snake.getXPos() <= 0 || snake.getXPos() >= snakeCanvas.getWidth()){
+            return false;
+        }
+        if (snake.getYPos() <= 0 || snake.getYPos() >= snakeCanvas.getWidth()){
+            return false;
+        }
 
         return true;
     }

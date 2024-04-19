@@ -21,7 +21,7 @@ public enum ViewList {
 
     /**
      * Game view
-     */,
+     */
     GAME("GameView.fxml"),
 
     /**

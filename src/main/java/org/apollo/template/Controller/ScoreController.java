@@ -9,6 +9,9 @@ import org.apollo.template.View.ViewList;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * TODO ScoreController is ready for DB intergration, but hasn't been completed yet, therefore hard coded array.
+ */
 public class ScoreController implements Initializable {
 
     @FXML
@@ -53,7 +56,8 @@ public class ScoreController implements Initializable {
     public void onMainMenu(){
 
         // resets the array
-        topFiveScores = null;
+        //TODO Uncomment when DB implemented.
+        //topFiveScores = null;
         MainController.getInstance().changeView(ViewList.MENU, BorderPaneRegion.CENTER);
     }
 

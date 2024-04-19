@@ -134,9 +134,9 @@ public class SettingsController implements Initializable {
 
     public void useSoundEffect(SoundEffect soundEffect){
 
-        String filepath = String.format("file:%s",soundEffect);
+        String filepath = String.format(String.valueOf(soundEffect));
         Media media = new Media(new File(filepath).toURI().toString());
-
+        soundEffectPlayer.stop();
         soundEffectPlayer = new MediaPlayer(media);
         soundEffectPlayer.play();
     }
