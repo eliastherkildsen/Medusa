@@ -1,5 +1,6 @@
 package org.apollo.template.model;
 
+import javafx.scene.paint.Color;
 import org.apollo.template.DirectionState.Directionable;
 import org.apollo.template.DirectionState.StillDirection;
 import org.apollo.template.model.snake.SnakeBodyPart;
@@ -129,6 +130,11 @@ public class Snake implements Character {
         this.yVelocity = yVelocity;
     }
 
+    public void setColor (Color color){
+        for (SnakeBodyPart bodypart: snakeBodyPartList) {
+            bodypart.setColor(color);
+        }
+    }
     public double getMovementSpeed() {
         return movementSpeed;
     }

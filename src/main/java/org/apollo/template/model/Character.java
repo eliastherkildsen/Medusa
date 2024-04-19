@@ -1,5 +1,6 @@
 package org.apollo.template.model;
 
+import javafx.scene.paint.Color;
 import org.apollo.template.DirectionState.Directionable;
 
 public interface Character extends Updateable {
@@ -14,6 +15,7 @@ public interface Character extends Updateable {
     public void addBodyPart();
     public void removeBodyPart();
     public void setMovementSpeed(double speed);
+    public void setColor (Color color);
 
     @Override
     public void update();

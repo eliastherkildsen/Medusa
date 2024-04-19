@@ -31,7 +31,8 @@ public enum ViewList {
     /**
      * Constructs a ViewList enum value with the specified FXML file name and controller.
      *
-     * @param fxmlFileName The name of the FXML file representing the view
+     * @param fxmlFileName The name of the FXML file
+     *                    representing the view
      * @param controller   The controller associated with the view
      */
     ViewList(String fxmlFileName, Object controller) {

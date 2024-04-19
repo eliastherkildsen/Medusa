@@ -9,6 +9,7 @@ public class Chilli extends Food{
     @Override
     public void eat(Character character) {
         gameState.interval = 10;
+        character.setColor(Color.RED);
         character.addBodyPart();
     }
 

@@ -39,9 +39,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable, Updateable {
-
     // region instance variables
-
     @FXML
     private StackPane gameStackPane;
     @FXML
@@ -58,7 +56,6 @@ public class GameController implements Initializable, Updateable {
     private Button btnResume, btnMainMenu, btnExit;
     private boolean pausedState = false;
     private Map map;
-
     private Snake snake;
     private Timeline gameLoop;
     private final javafx.util.Duration GAME_TICK = javafx.util.Duration.millis(100); // Adjust tick duration as needed
@@ -66,13 +63,10 @@ public class GameController implements Initializable, Updateable {
     private int interval = gameState.interval;
     private int cnt;
     private final int MAX_APPLE = 1;
-
     public GameController() {
         this.snake = new Snake();
         this.map = new Map();
     }
-
-
     // endregion
 
     /**
@@ -141,6 +135,8 @@ public class GameController implements Initializable, Updateable {
             // spawning food.
             spawnFood();
 
+        } else {
+            MainController.getInstance().changeView(V);
         }
     }
 
