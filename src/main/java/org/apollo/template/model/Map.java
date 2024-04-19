@@ -21,8 +21,8 @@ public class Map {
                 } else {
                     square.setFill(Color.rgb(162,209,73));
                 }
-                square.setLayoutX(j * squareSize);
-                square.setLayoutY(i * squareSize);
+                square.setX(j * squareSize);
+                square.setY(i * squareSize);
                 pane.getChildren().add(square);
 
                 squares[i][j] = square;
@@ -44,4 +44,6 @@ public class Map {
     public Rectangle[][] getSquares() {
         return squares;
     }
+
+
 }

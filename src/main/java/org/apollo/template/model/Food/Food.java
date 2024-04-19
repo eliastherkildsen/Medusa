@@ -1,8 +1,11 @@
 package org.apollo.template.model.Food;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+import org.apollo.template.model.snake.SnakeHead;
+
+import java.time.LocalDateTime;
 
 public abstract class Food extends Rectangle implements Eatable  {
     private final int POINT;
@@ -10,6 +13,9 @@ public abstract class Food extends Rectangle implements Eatable  {
     private SoundEffect soundEffect;
 
 
+    private Integer lifeTime;
+    private final LocalDateTime creationTime = LocalDateTime.now();
+    private boolean alive;
 
 
     protected Food(int point, double xPos, double yPos) {
@@ -17,12 +23,26 @@ public abstract class Food extends Rectangle implements Eatable  {
         this.X_POS = xPos;
         this.Y_POS = yPos;
 
-        this.setLayoutX(X_POS);
-        this.setLayoutY(Y_POS);
-        this.setHeight(2);
+        this.setX(X_POS);
+        this.setY(Y_POS);
         this.setWidth(2);
+        this.setHeight(2);
+        this.setScaleX(20);
+        this.setScaleY(20);
+
+        alive = true;
+
     }
 
+    protected Food(int point, double xPos, double yPos, Integer lifeTime) {
+        this(point, xPos, yPos);
+        this.lifeTime = lifeTime;
+
+    }
+
+    public void setLifeTime(Integer lifeTime) {
+        this.lifeTime = lifeTime;
+    }
 
     public void setSoundEffect(SoundEffect soundEffect) {
         this.soundEffect = soundEffect;
@@ -44,11 +64,27 @@ public abstract class Food extends Rectangle implements Eatable  {
         return Y_POS;
     }
 
-    public boolean isColided(double x, double y){
+    public boolean isColided(SnakeHead snakeHead){
+        return this.getBoundsInParent().intersects(snakeHead.getBoundsInParent());
+    }
 
-        if (x == X_POS && y == Y_POS) return true;
+    public boolean isAlive() {
+        return alive;
+    }
 
-        return false;
+
+    @Override
+    public void update() {
+
+        if (lifeTime == null) return;
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime before = creationTime.plusSeconds((long)lifeTime);
+
+        alive = (now.isBefore(before));
+
+        System.out.println("NOW : " + now);
+        System.out.println("BEFORE : " + before);
 
     }
 }

@@ -21,8 +21,8 @@ public enum ViewList {
 
     /**
      * Game view
-     */
-    GAME("GameView.fxml", new GameController()),
+     */,
+    GAME("GameView.fxml"),
 
     /**
      * Setting view
@@ -45,17 +45,22 @@ public enum ViewList {
     GAMEOVER("GameOverView.fxml", new GameOverController());
 
     private final String FXML_FILE_NAME; // FXML file name of the view
-    private final Object CONTROLLER; // Controller associated with the view
+    private Object CONTROLLER; // Controller associated with the view
 
     /**
      * Constructs a ViewList enum value with the specified FXML file name and controller.
      *
-     * @param fxmlFileName The name of the FXML file representing the view
+     * @param fxmlFileName The name of the FXML file
+     *                    representing the view
      * @param controller   The controller associated with the view
      */
     ViewList(String fxmlFileName, Object controller) {
         this.FXML_FILE_NAME = fxmlFileName;
         this.CONTROLLER = controller;
+    }
+
+    ViewList(String fxmlFileName) {
+        this.FXML_FILE_NAME = fxmlFileName;
     }
 
     /**

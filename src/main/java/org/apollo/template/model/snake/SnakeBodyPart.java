@@ -10,9 +10,8 @@ import org.apollo.template.model.Direction;
  * This class creates snake body parts.
  */
 public class SnakeBodyPart extends Circle {
-
-    private final Color ODD_COLOR = Color.GREENYELLOW;
-    private final Color EVEN_COLOR = Color.GREENYELLOW;
+    private Color EvenColor = SnakeDefaultColors.BODYCOLOREVEN;
+    private Color OddColor = SnakeDefaultColors.BODYCOLORODD;
     private static int COUNT = 0;
     private double oldX, oldY;
     private final int DIAMETER = 20;
@@ -22,9 +21,9 @@ public class SnakeBodyPart extends Circle {
 
         COUNT ++;
         if (COUNT % 2 == 0){
-            setFill(ODD_COLOR);
+            setFill(OddColor);
         }
-        else setFill(EVEN_COLOR);
+        else setFill(EvenColor);
 
 
         int DIAMETER = 25;
@@ -49,5 +48,11 @@ public class SnakeBodyPart extends Circle {
 
     public double getOldY() {
         return oldY;
+    }
+
+    public void setColor(Color color){
+        EvenColor = color;
+        OddColor = color;
+        this.setFill(EvenColor);
     }
 }

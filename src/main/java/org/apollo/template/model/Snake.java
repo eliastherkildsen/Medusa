@@ -130,6 +130,11 @@ public class Snake implements Character {
         this.yVelocity = yVelocity;
     }
 
+    public void setColor (Color color){
+        for (SnakeBodyPart bodypart: snakeBodyPartList) {
+            bodypart.setColor(color);
+        }
+    }
     public double getMovementSpeed() {
         return movementSpeed;
     }
@@ -139,9 +144,7 @@ public class Snake implements Character {
     public void setDirectional(Directionable directionable) {
         this.directionable = directionable;
     }
-    public void setMovementSpeed(double movementSpeed) {
-        this.movementSpeed = movementSpeed;
-    }
+
     public double getXPos() {
         return xPos;
     }
@@ -152,6 +155,12 @@ public class Snake implements Character {
     public Direction getDirection() {
         return directionable.getStateAsDirection();
     }
+
+    @Override
+    public void setMovementSpeed(double speed) {
+        this.movementSpeed = speed;
+    }
+
     // endregion
 
 }
