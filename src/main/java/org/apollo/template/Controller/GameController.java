@@ -143,7 +143,7 @@ public class GameController implements Initializable, Updateable {
             spawnFood();
 
         } else {
-            MainController.getInstance().changeView(V);
+            MainController.getInstance().changeView(ViewList.GAMEOVER, BorderPaneRegion.CENTER);
         }
     }
 
